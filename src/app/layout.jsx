@@ -1,5 +1,6 @@
 import React from "react"
 import { Footer } from "@/components/footer/Footer"
+import { Header } from "@/components/header/Header"
 
 export const metadata = {
   title: 'Employee participation',
@@ -9,8 +10,11 @@ export const metadata = {
 export default function RootLayout({children}) {
   return (
     <html lang="en">
-      <body>{children}</body>
-      <Footer/>
+      <body>
+        <Header/>
+        {children}
+        <Footer/>
+      </body>
     </html>
   )
 }
