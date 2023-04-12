@@ -1,6 +1,8 @@
 import Head from "next/head"
 
-export default function Dashboard () {
+
+//https://www.youtube.com/watch?v=RaweREhpBX8 - refresh token
+export default function Dashboard ({}) {
     return (
         <>
             <Head>
@@ -9,8 +11,25 @@ export default function Dashboard () {
                 <meta name="keywords" content="participação dos funcionários, escala de participação, avaliação de funcionários"/>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            
+
             <h2>Dashboard</h2>
         </>
     )
+}
+
+export async function getServerSideProps (ctx) {
+    const token = ctx.req.cookies.token
+
+    if (!token) {
+        return {
+            redirect: {
+                destination: "/",
+                permanent: false
+            }
+        }
+    }
+
+    return {
+        props: {}
+    }
 }
