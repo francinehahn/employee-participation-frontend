@@ -1,0 +1,20 @@
+@mixin bgColors($color) {
+    @if $color == 'purple' {
+        background-color: #8000FF
+    }
+    @if $color == 'medium-blue' {
+        background-color: #77e8ff
+    }
+    @if $color == 'light-grey' {
+        background-color: rgb(251, 251, 251)
+    }
+}
+
+@mixin textColors($color) {
+    @if $color == 'purple' {
+        color: #8000FF
+    }
+    @if $color == 'purple-hover' {
+        color: #8000ff6b
+    }
+}
