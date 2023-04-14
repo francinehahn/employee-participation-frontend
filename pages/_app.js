@@ -1,6 +1,6 @@
-import { Footer } from "../components/footer/footer"
-import { Header } from "../components/header/header"
-
+import { Footer } from "../components/footer"
+import { Header } from "../components/header"
+import "../styles/global.scss"
 
 function MyApp({ Component, pageProps }) {
   return (
