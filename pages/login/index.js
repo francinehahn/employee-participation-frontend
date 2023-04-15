@@ -7,6 +7,7 @@ import styles from "../../styles/login.module.scss"
 import Link from "next/link"
 import { LoadingButton } from "../../components/loadingButton"
 import { Header } from "../../components/header"
+import { baseUrl } from "../../constants/baseUrl"
 
 
 export default function Login ({token}) {
@@ -35,13 +36,13 @@ export default function Login ({token}) {
             setEmailError("Informe o seu email.")
             setIsLoading(false)
         }
-        if (password.length < 8) {
+        if (password === "" || password.length < 8) {
             setPasswordError("A senha deve ter pelo menos 8 caracteres.")
             setIsLoading(false)
         }
         
         if (email !== "" && password.length >= 8) {
-            axios.post("https://employee-participation.onrender.com/users/login", body)
+            axios.post(`${baseUrl}users/login`, body)
             .then(response => {
                 setIsLoading(false)
                 setCookie(undefined, 'token', response.data.token, {
@@ -72,14 +73,14 @@ export default function Login ({token}) {
 
                 <form onSubmit={handleLogin}>
                     <div>
-                        <label>E-mail</label>
-                        <input type={'email'} placeholder="maria.santos@gmail.com" value={email} onChange={e => setEmail(e.target.value)}/>
+                        <label htmlFor="email">E-mail</label>
+                        <input type={'email'} placeholder="maria.santos@gmail.com" name="email" value={email} onChange={e => setEmail(e.target.value)}/>
                         <p>{emailError}</p>
                     </div>
 
                     <div>
-                        <label>Senha</label>
-                        <input type={'password'} placeholder="********" value={password} onChange={e => setPassword(e.target.value)}/>
+                        <label htmlFor="password">Senha</label>
+                        <input type={'password'} placeholder="********" name="password" value={password} onChange={e => setPassword(e.target.value)}/>
                         <p>{passwordError}</p>
                     </div>
 

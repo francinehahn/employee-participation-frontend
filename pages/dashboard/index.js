@@ -29,16 +29,16 @@ export default function Dashboard ({token}) {
 export async function getServerSideProps (ctx) {
     const token = nookies.get(ctx)
 
-    if (!token) {
+    if (!token.token) {
         return {
             redirect: {
                 destination: "/",
                 permanent: false
             }
         }
-    }
-
-    return {
-        props: {token}
+    } else {
+        return {
+            props: {token}
+        }
     }
 }
