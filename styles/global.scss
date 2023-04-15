@@ -17,4 +17,37 @@ body {
     p {
         line-height: 3.5vh;
     }
+
+    h2 {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+
+    input {
+        padding: .5rem;
+        border: 1px solid #bfbfbf;
+        border-radius: 3px;
+
+        &:focus {
+            outline: 1.5px solid #7300e7;
+        }
+    }
+
+    input, label, button {
+        font-size: 1rem;
+    }
+
+    button {
+        border: none;
+        border-radius: 3px;
+        padding: .6rem 0;
+        @include bgColors("purple");
+        color: white;
+
+        &:hover {
+            cursor: pointer;
+            @include bgColors("purple-hover");
+            transition: all .2s ease 0s;
+        }
+    }
 }

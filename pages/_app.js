@@ -1,4 +1,3 @@
-import { Footer } from "../components/footer"
 import { Header } from "../components/header"
 import "../styles/global.scss"
 
@@ -7,7 +6,6 @@ function MyApp({ Component, pageProps }) {
     <>
       <Header/>
       <Component {...pageProps} />
-      <Footer/>
     </>
   )
 }

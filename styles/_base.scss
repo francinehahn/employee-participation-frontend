@@ -2,11 +2,11 @@
     @if $color == 'purple' {
         background-color: #7300e7
     }
-    @if $color == 'medium-green' {
-        background-color: #77f5f1
-    }
     @if $color == 'light-grey' {
         background-color: rgb(251, 251, 251)
+    }
+    @if $color == 'purple-hover' {
+        background-color: #7400e7d3
     }
 }
 
@@ -14,7 +14,16 @@
     @if $color == 'purple' {
         color: #7300e7
     }
-    @if $color == 'purple-hover' {
-        color: #7400e788
+    @if $color == 'dark-purple' {
+        color: #3a0272
+    }
+    @if $color == 'light-grey' {
+        color: rgb(251, 251, 251)
+    }
+    @if $color == 'light-grey-hover' {
+        color: rgba(251, 251, 251, 0.721)
+    }
+    @if $color == 'red' {
+        color: #ff0000
     }
 }
