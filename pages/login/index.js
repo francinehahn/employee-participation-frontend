@@ -2,19 +2,22 @@ import { useState } from "react"
 import axios from "axios"
 import Head from "next/head"
 import Router from "next/router"
-import { setCookie } from "nookies"
+import nookies, { setCookie } from "nookies"
 import styles from "../../styles/login.module.scss"
 import Link from "next/link"
 import { LoadingButton } from "../../components/loadingButton"
+import { Header } from "../../components/header"
 
 
-export default function Login () {
+export default function Login ({token}) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [isLoading, setIsLoading] = useState(false)
     const [axiosError, setAxiosError] = useState("")
     const [emailError, setEmailError] = useState("")
     const [passwordError, setPasswordError] = useState("")
+    let isLoggedIn
+    token.token? isLoggedIn = true : isLoggedIn = false
 
     const handleLogin = async (e) => {
         e.preventDefault()
@@ -62,6 +65,8 @@ export default function Login () {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
+            <Header isLoggedIn={isLoggedIn}/>
+
             <div className={styles.container}>
                 <h2>Entre na sua conta</h2>
 
@@ -89,4 +94,12 @@ export default function Login () {
             </div>
         </>
     )
+}
+
+export async function getServerSideProps (ctx) {
+    const token = nookies.get(ctx)
+  
+    return {
+        props: {token}
+    }
 }

@@ -1,9 +1,13 @@
 import Head from "next/head"
 import { Footer } from "../../components/footer"
+import { Header } from "../../components/header"
+import nookies from "nookies"
 
 
-//https://www.youtube.com/watch?v=RaweREhpBX8 - refresh token
-export default function Dashboard ({}) {
+export default function Dashboard ({token}) {
+    let isLoggedIn
+    token.token? isLoggedIn = true : isLoggedIn = false
+
     return (
         <>
             <Head>
@@ -13,6 +17,8 @@ export default function Dashboard ({}) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
+            <Header isLoggedIn={isLoggedIn}/>
+
             <h2>Dashboard</h2>
 
             <Footer/>
@@ -21,7 +27,7 @@ export default function Dashboard ({}) {
 }
 
 export async function getServerSideProps (ctx) {
-    const token = ctx.req.cookies.token
+    const token = nookies.get(ctx)
 
     if (!token) {
         return {
@@ -33,6 +39,6 @@ export async function getServerSideProps (ctx) {
     }
 
     return {
-        props: {}
+        props: {token}
     }
 }
