@@ -2,11 +2,14 @@ import Head from "next/head"
 import { Footer } from "../../components/footer"
 import { Header } from "../../components/header"
 import nookies from "nookies"
+//import Chart from "react-apexcharts"
+import { baseUrl } from "../../constants/baseUrl"
 
 
-export default function Dashboard ({token}) {
+export default function Dashboard ({token, data}) {
     let isLoggedIn
     token.token? isLoggedIn = true : isLoggedIn = false
+    console.log(data)
 
     return (
         <>
@@ -36,9 +39,20 @@ export async function getServerSideProps (ctx) {
                 permanent: false
             }
         }
-    } else {
-        return {
-            props: {token}
+    }
+
+    const response = await fetch(`${baseUrl}users/account`, {
+        headers: {
+            Authorization: token.token
+        }
+    })
+
+    const data = await response.json()
+
+    return {
+        props: {
+            token,
+            data
         }
     }
 }
