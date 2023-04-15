@@ -1,4 +1,5 @@
 import Head from "next/head"
+import { Footer } from "../../components/footer"
 
 
 //https://www.youtube.com/watch?v=RaweREhpBX8 - refresh token
@@ -13,6 +14,8 @@ export default function Dashboard ({}) {
             </Head>
 
             <h2>Dashboard</h2>
+
+            <Footer/>
         </>
     )
 }

@@ -3,7 +3,8 @@ import styles from "../styles/header.module.scss"
 import Image from "next/image"
 import logo from "../images/logo.png"
 
-export function Header({isLogedIn}) {
+export function Header() {
+    //criar contexto pra pegar o token
     return (
         <header className={styles.container}>
             <Link href="/">
@@ -18,15 +19,4 @@ export function Header({isLogedIn}) {
             </nav>
         </header>
     )
-}
-
-export async function getServerSideProps (ctx) {
-    const token = ctx.req.cookies.token
-    let isLogedIn
-
-    token? isLogedIn = true : isLogedIn = false
-
-    return {
-        props: {isLogedIn}
-    }
 }

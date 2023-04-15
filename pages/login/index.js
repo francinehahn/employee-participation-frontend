@@ -3,6 +3,9 @@ import axios from "axios"
 import Head from "next/head"
 import Router from "next/router"
 import { setCookie } from "nookies"
+import styles from "../../styles/login.module.scss"
+import Link from "next/link"
+import { LoadingButton } from "../../components/loadingButton"
 
 
 export default function Login () {
@@ -26,12 +29,15 @@ export default function Login () {
         }
 
         if (email === "") {
-            setEmailError("Preencha o campo de email.")
+            setEmailError("Informe o seu email.")
             setIsLoading(false)
-        } else if (password.length < 8) {
+        }
+        if (password.length < 8) {
             setPasswordError("A senha deve ter pelo menos 8 caracteres.")
             setIsLoading(false)
-        } else {
+        }
+        
+        if (email !== "" && password.length >= 8) {
             axios.post("https://employee-participation.onrender.com/users/login", body)
             .then(response => {
                 setIsLoading(false)
@@ -56,24 +62,31 @@ export default function Login () {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <h2>Entre na sua conta</h2>
+            <div className={styles.container}>
+                <h2>Entre na sua conta</h2>
 
-            <form onSubmit={handleLogin}>
-                <div>
-                    <label>E-mail</label>
-                    <input type={'email'} placeholder="maria.santos@gmail.com" value={email} onChange={e => setEmail(e.target.value)}/>
-                    <p>{emailError}</p>
-                </div>
+                <form onSubmit={handleLogin}>
+                    <div>
+                        <label>E-mail</label>
+                        <input type={'email'} placeholder="maria.santos@gmail.com" value={email} onChange={e => setEmail(e.target.value)}/>
+                        <p>{emailError}</p>
+                    </div>
 
-                <div>
-                    <label>Senha</label>
-                    <input type={'password'} placeholder="********" value={password} onChange={e => setPassword(e.target.value)}/>
-                    <p>{passwordError}</p>
-                </div>
+                    <div>
+                        <label>Senha</label>
+                        <input type={'password'} placeholder="********" value={password} onChange={e => setPassword(e.target.value)}/>
+                        <p>{passwordError}</p>
+                    </div>
 
-                <p>{axiosError}</p>
-                <button>{isLoading? 'Carregando' : 'Entrar'}</button>
-            </form>
+                    <p>{axiosError}</p>
+                    <button>{isLoading? <LoadingButton/> : 'Entrar'}</button>
+                </form>
+
+                <span className={styles.span}>
+                    <p>Não possui uma conta?</p>
+                    <Link href={"/signup"}>Clique aqui.</Link>
+                </span>
+            </div>
         </>
     )
 }

@@ -5,7 +5,7 @@
     align-items: center;
     gap: 16vw;
     padding: 1rem 2rem;
-    @include bgColors("medium-green");
+    @include bgColors("purple");
 
     div {
         &:nth-child(1) {
@@ -14,13 +14,13 @@
             
             a {
                 svg {
-                    @include textColors("purple");
+                    @include textColors("light-grey");
                     height: 1.5rem;
                     width: 1.5rem;
     
                     &:hover {
                         cursor: pointer;
-                        @include textColors("purple-hover");
+                        @include textColors("light-grey-hover");
                     }
                 }
             }
@@ -29,8 +29,8 @@
         &:nth-child(2) {
             p {
                 text-align: center;
-                font-weight: 600;
-                @include textColors("purple");
+                font-weight: 400;
+                @include textColors("light-grey");
             }
         }
     }

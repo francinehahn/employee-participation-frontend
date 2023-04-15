@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { Footer } from '../components/footer'
 
 export default function Home() {
   return (
@@ -11,6 +12,8 @@ export default function Home() {
       </Head>
 
       <h1>Home page</h1>
+
+      <Footer/>
     </div>
   )
 }
