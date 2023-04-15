@@ -1,5 +1,5 @@
 import Link from "next/link"
-import styles from "../styles/headerStyle.module.scss"
+import styles from "../styles/header.module.scss"
 import Image from "next/image"
 import logo from "../images/logo.png"
 
