@@ -1,0 +1,1 @@
+export const baseUrl = "https://employee-participation.onrender.com/"
