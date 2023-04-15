@@ -12,5 +12,9 @@ html {
 }
 
 body {
-    @include bgColors("light-grey")
+    @include bgColors("light-grey");
+
+    p {
+        line-height: 3.5vh;
+    }
 }

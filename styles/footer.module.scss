@@ -1,0 +1,37 @@
+@import "./base";
+
+.container {
+    display: flex;
+    align-items: center;
+    gap: 16vw;
+    padding: 1rem 2rem;
+    @include bgColors("medium-green");
+
+    div {
+        &:nth-child(1) {
+            display: flex;
+            gap: 1.5rem;
+            
+            a {
+                svg {
+                    @include textColors("purple");
+                    height: 1.5rem;
+                    width: 1.5rem;
+    
+                    &:hover {
+                        cursor: pointer;
+                        @include textColors("purple-hover");
+                    }
+                }
+            }
+        }
+
+        &:nth-child(2) {
+            p {
+                text-align: center;
+                font-weight: 600;
+                @include textColors("purple");
+            }
+        }
+    }
+}
