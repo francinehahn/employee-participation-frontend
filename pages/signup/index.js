@@ -1,12 +1,12 @@
 import Head from "next/head"
 import { useState } from "react"
-import { Header } from "../../components/header"
+import { Header } from "../../components/header/header"
 import nookies from "nookies"
 import axios from "axios"
 import { baseUrl } from "../../constants/baseUrl"
-import { LoadingButton } from "../../components/loadingButton"
+import { LoadingButton } from "../../components/loadingButton/loadingButton"
 import Router from "next/router"
-import styles from "../../styles/signup.module.scss"
+import styles from "./signup.module.scss"
 
 
 export default function Signup ({token}) {

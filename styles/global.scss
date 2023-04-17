@@ -21,34 +21,40 @@ body {
     h2 {
         font-size: 1.8rem;
         text-align: center;
+        @include textColors("dark-purple")
     }
 
-    form {
-        display: flex;
-        flex-direction: column;
-        gap: .5rem;
-        width: 25vw;
+    h3 {
+        font-size: 1.4rem;
+        @include textColors("dark-purple")
     }
 
-    input {
-        padding: .5rem;
-        border: 1px solid #bfbfbf;
+    select {
+        width: 8rem;
+        padding: .2rem .5rem;
         border-radius: 3px;
-        background-color: transparent;
-
         &:focus {
             outline: 1.5px solid #7300e7;
         }
     }
 
-    input, label, button {
+    input {
+        border: 1px solid #bfbfbf;
+        border-radius: 3px;
+        background-color: transparent;
+        padding: .2rem .5rem;
+        &:focus {
+            outline: 1.5px solid #7300e7;
+        }
+    }
+
+    p, input, label, button, select {
         font-size: 1rem;
     }
 
     button {
         border: none;
         border-radius: 3px;
-        padding: .6rem 0;
         @include bgColors("purple");
         color: white;
 
