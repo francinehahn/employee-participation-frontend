@@ -1,20 +1,16 @@
 import Head from "next/head"
-import { Footer } from "../../components/footer"
-import { Header } from "../../components/header"
+import { Header } from "../../components/header/header"
+import { Footer } from "../../components/footer/footer"
 import nookies from "nookies"
-//import Chart from "react-apexcharts"
-import { baseUrl } from "../../constants/baseUrl"
 
-
-export default function Dashboard ({token, data}) {
+export default function Employees ({token}) {
     let isLoggedIn
     token.token? isLoggedIn = true : isLoggedIn = false
-    console.log(data)
 
     return (
         <>
             <Head>
-                <title>Dashboard | Employee Participation</title>
+                <title>Funcionários | Employee Participation</title>
                 <meta name="description" content="O melhor site de avaliação de funcionários"/>
                 <meta name="keywords" content="participação dos funcionários, escala de participação, avaliação de funcionários"/>
                 <link rel="icon" href="/favicon.ico" />
@@ -22,7 +18,9 @@ export default function Dashboard ({token, data}) {
 
             <Header isLoggedIn={isLoggedIn}/>
 
-            <h2>Dashboard</h2>
+            <div>
+                Página de funcionários.
+            </div>
 
             <Footer/>
         </>
@@ -41,18 +39,9 @@ export async function getServerSideProps (ctx) {
         }
     }
 
-    const response = await fetch(`${baseUrl}users/account`, {
-        headers: {
-            Authorization: token.token
-        }
-    })
-
-    const data = await response.json()
-
     return {
         props: {
-            token,
-            data
+            token
         }
     }
 }

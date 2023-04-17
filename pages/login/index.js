@@ -3,10 +3,10 @@ import axios from "axios"
 import Head from "next/head"
 import Router from "next/router"
 import nookies, { setCookie } from "nookies"
-import styles from "../../styles/login.module.scss"
+import styles from "./login.module.scss"
 import Link from "next/link"
-import { LoadingButton } from "../../components/loadingButton"
-import { Header } from "../../components/header"
+import { LoadingButton } from "../../components/loadingButton/loadingButton"
+import { Header } from "../../components/header/header"
 import { baseUrl } from "../../constants/baseUrl"
 
 
@@ -17,6 +17,7 @@ export default function Login ({token}) {
     const [axiosError, setAxiosError] = useState("")
     const [emailError, setEmailError] = useState("")
     const [passwordError, setPasswordError] = useState("")
+
     let isLoggedIn
     token.token? isLoggedIn = true : isLoggedIn = false
 
@@ -48,7 +49,7 @@ export default function Login ({token}) {
                 setCookie(undefined, 'token', response.data.token, {
                     maxAge: 60 * 60 //1 hora
                 })
-                Router.push("/dashboard")
+                Router.push("/projects")
             })
             .catch(error => {
                 setIsLoading(false)

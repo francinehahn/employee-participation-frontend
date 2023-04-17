@@ -1,0 +1,19 @@
+
+
+.container {
+    display: flex;
+    gap: 2vw;
+
+    div {
+        input {
+            width: 7rem;
+        }
+        select {
+            width: 12rem;
+        }
+    }
+
+    button {
+        padding: .4rem 1rem;
+    }
+}

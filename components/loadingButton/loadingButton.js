@@ -1,4 +1,4 @@
-import styles from "../styles/loadingButton.module.scss"
+import styles from "./loadingButton.module.scss"
 
 export function LoadingButton() {
     return (

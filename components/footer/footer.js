@@ -1,7 +1,7 @@
 import { BsInstagram } from 'react-icons/bs'
 import { BsLinkedin } from 'react-icons/bs'
 import { ImFacebook2 } from 'react-icons/im'
-import styles from "../styles/footer.module.scss"
+import styles from "./footer.module.scss"
 import Link from 'next/link'
 
 export function Footer() {

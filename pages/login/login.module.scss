@@ -1,4 +1,4 @@
-@import "../styles/base";
+@import "../../styles/base";
 
 .container {
     display: flex;
@@ -9,10 +9,13 @@
 
     h2 {
         margin-bottom: 1.5rem;
-        @include textColors("dark-purple");
     }
 
     form {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        width: 25vw;
         div {
             display: flex;
             flex-direction: column;
@@ -20,6 +23,10 @@
             p {
                 @include textColors("red");
             }
+        }
+
+        button {
+            padding: .6rem 0;
         }
 
         p {

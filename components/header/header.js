@@ -1,7 +1,7 @@
 import Link from "next/link"
-import styles from "../styles/header.module.scss"
+import styles from "./header.module.scss"
 import Image from "next/image"
-import logo from "../images/logo.png"
+import logo from "../../images/logo.png"
 import {destroyCookie} from "nookies"
 
 export function Header(props) {
@@ -17,7 +17,9 @@ export function Header(props) {
             
             <nav>
                 <Link href={"/"}>Página inicial</Link>
-                {props.isLoggedIn && <Link href={"/dashboard"}>Dashboard</Link>}
+                {props.isLoggedIn && <Link href={"/projects"}>Projetos</Link>}
+                {props.isLoggedIn && <Link href={"/employees"}>Funcionários</Link>}
+                {props.isLoggedIn && <Link href={"/registrations"}>Cadastros</Link>}
                 {!props.isLoggedIn && <Link href={"/login"}>Entrar</Link>}
                 {!props.isLoggedIn && <Link href={"/signup"}>Cadastrar</Link>}
                 {props.isLoggedIn && <Link href={"/"} onClick={handleLogout}>Sair</Link>}
