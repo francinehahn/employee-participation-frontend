@@ -46,18 +46,18 @@ export function RegisterCollaboratorForm ({user, project, token}) {
     
     return (
         <form className={styles.container} onSubmit={handleSubmit}>
-            <div>
+            <span>
                 <label htmlFor="employee">Selecione o funcionário:</label>
                 <select name="employee" onChange={e => setEmployee(e.target.value)} required>
                     <option value="">Selecione</option>
                     {allEmployees}
                 </select>
-            </div>
+            </span>
 
-            <div>
-                <label htmlFor="participation">Participação (%)</label>
+            <span>
+                <label htmlFor="participation">Participação (%):</label>
                 <input type="number" placeholder="25%" name="participation" value={participation} onChange={e => setParticipation(e.target.value)}/>
-            </div>
+            </span>
 
             <button>{isLoading? <LoadingButton/> : "Cadastrar"}</button>
         </form>

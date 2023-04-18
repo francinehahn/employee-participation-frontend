@@ -23,6 +23,10 @@
             p {
                 @include textColors("red");
             }
+
+            input {
+                padding: .4rem .5rem;
+            }
         }
 
         button {

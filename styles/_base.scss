@@ -26,4 +26,7 @@
     @if $color == 'red' {
         color: #ff0000
     }
+    @if $color == 'green' {
+        color: #1aaa00
+    }
 }

@@ -47,11 +47,13 @@ export default function Projects ({token}) {
                     <div>
                         <h3>Bem vindo(a), {user.user_name}!</h3>
 
-                        <label htmlFor="project">Selecione o projeto:</label>
-                        <select name="project" onChange={e => setProject(e.target.value)}>
-                            <option value="">Selecione</option>
-                            {allProjects}
-                        </select>
+                        <span>
+                            <label htmlFor="project">Selecione o projeto:</label>
+                            <select name="project" onChange={e => setProject(e.target.value)}>
+                                <option value="">Selecione</option>
+                                {allProjects}
+                            </select>
+                        </span>
                     </div>
 
                     {project && <RegisterCollaboratorForm user={user} project={project} token={token.token}/>}
@@ -63,7 +65,7 @@ export default function Projects ({token}) {
                             <h2>{projectInfo.project_name}</h2>
                             <p>Data de início: {projectInfo.start_date}</p>
                             <p>Data de término: {projectInfo.end_date}</p>
-                            <h3>Lista de colaboradores / participação</h3>
+                            <h3>Colaboradores - participação</h3>
                             {projectInfo.collaborators.length > 0 && <CollaboratorsList projectInfo={projectInfo}/>}
                             {projectInfo.collaborators.length === 0 && <p>Outros - 100%</p>}
                         </div>
