@@ -16,11 +16,22 @@
             div {
                 display: flex;
                 align-items: center;
-                gap: .5vw;
+                gap: 3vw;
 
-                label {
-                    font-weight: 600;
-                    @include textColors("dark-purple")
+                span {
+                    display: flex;
+                    align-items: center;
+                    gap: 1vw;
+
+                    label {
+                        font-weight: 600;
+                        @include textColors("dark-purple")
+                    }
+    
+                    select {
+                        width: 10vw;
+                        padding: .2rem .4rem;
+                    }
                 }
             }
         }

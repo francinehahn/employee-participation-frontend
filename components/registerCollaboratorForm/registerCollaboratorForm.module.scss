@@ -4,16 +4,22 @@
     display: flex;
     gap: 2vw;
 
-    div {
+    span {
+        display: flex;
+        align-items: center;
+        gap: .5vw;
+
         input {
-            width: 7rem;
+            padding: .3rem .4rem;
+            width: 6vw;
         }
         select {
-            width: 12rem;
+            padding: .3rem .4rem;
+            width: 15vw;
         }
     }
 
     button {
-        padding: .4rem 1rem;
+        padding: .3rem 1.4rem;
     }
 }
