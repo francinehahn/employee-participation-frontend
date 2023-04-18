@@ -1,21 +1,19 @@
-
-
 .container {
     display: flex;
-    gap: 2vw;
+    gap: 1.5rem;
 
     span {
         display: flex;
         align-items: center;
-        gap: .5vw;
+        gap: .5rem;
 
         input {
             padding: .3rem .4rem;
-            width: 6vw;
+            width: 5.5rem;
         }
         select {
             padding: .3rem .4rem;
-            width: 15vw;
+            width: 13rem;
         }
     }
 

@@ -5,7 +5,7 @@
     justify-content: space-between;
     align-items: center;
     @include bgColors("purple");
-    padding: .5vh 5vw;
+    padding: .2rem 5rem;
     position: sticky;
     top: 0;
 
@@ -19,9 +19,9 @@
 
     nav {
         display: flex;
-        gap: 2.5rem;
+        gap: 2.1rem;
         a {
-            font-size: 1.1rem;
+            font-size: 1rem;
             @include textColors("light-grey");
             text-decoration: none;
             font-weight: 400;
