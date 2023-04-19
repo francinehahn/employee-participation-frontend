@@ -13,6 +13,10 @@ export default function BarChart ({collaborators}) {
                     categories: employees,
                     title: {text: "Funcionários"}
                 },
+                yaxis: {
+                    categories: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+                    title: {text: "Participação %"}
+                },
                 fill: {
                     colors: ['#FFCF00']
                 },
