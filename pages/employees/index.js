@@ -5,32 +5,73 @@ import { Footer } from "../../components/footer/footer"
 import nookies from "nookies"
 import { useEffect, useState } from "react"
 import { baseUrl } from "../../constants/baseUrl"
+import styles from "./employees.module.scss"
+import dynamic from "next/dynamic"
+
+const BarChartWithNoSSR = dynamic(
+    () => import("../../components/employeeChart/employeeChart"),
+    { ssr: false }
+)
 
 export default function Employees ({token}) {
     const [search, setSearch] = useState("")
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoadingAllEmployees, setIsLoadingAllEmployees] = useState(false)
     const [employees, setEmployees] = useState("")
-
+    const [selectedEmployee, setSelectedEmployee] = useState("ranking")
+    const [dataEmployee, setDataEmployee] = useState("")
+    const [errorEmployee, setErrorEmployee] = useState("")
+    const [isLoadingEmployee, setIsLoadingEmployee] = useState(false)
+    
     let isLoggedIn
     token.token? isLoggedIn = true : isLoggedIn = false
 
     useEffect(() => {
-        setIsLoading(true)
+        setIsLoadingAllEmployees(true)
+        setEmployees("")
+
         axios.get(`${baseUrl}users/employees?search=${search}`, {
             headers: {
                 Authorization: token.token
             }
         }).then(response => {
-            setIsLoading(false)
+            setIsLoadingAllEmployees(false)
             setEmployees(response.data)
         }).catch(error => {
-            setIsLoading(false)
+            setIsLoadingAllEmployees(false)
             alert(error.response.data)
         })
     }, [search, token.token])
 
+    
+    useEffect(() => {
+        setIsLoadingEmployee(true)
+        setDataEmployee("")
+        setErrorEmployee("")
+
+        if (selectedEmployee !== "ranking") {
+            axios.get(`${baseUrl}users/employees/${selectedEmployee.replace(" ", "-")}`, {
+                headers: {
+                    Authorization: token.token
+                }
+            }).then(response => {
+                setIsLoadingEmployee(false)
+                setDataEmployee(response.data)
+            }).catch(error => {
+                setIsLoadingEmployee(false)
+                setErrorEmployee(error.response.data)
+            })
+        }
+        
+    }, [selectedEmployee, token.token])
+
     const renderEmployees = employees && employees.map(item => {
-        return <li key={item.employee_name}>{item.employee_name}</li>
+        return (
+            <div key={item.employee_name}>
+                <input type="radio" name="employee" id={item.employee_name} value={item.employee_name}/>
+                <label htmlFor={item.employee_name}>{item.employee_name}</label>
+                <br></br>
+            </div>
+        )
     })
 
     return (
@@ -44,17 +85,43 @@ export default function Employees ({token}) {
 
             <Header isLoggedIn={isLoggedIn}/>
 
-            <div>
-                <label htmlFor="search">Filtrar funcionários:</label>
-                <select name="search" onChange={e => setSearch(e.target.value)}>
-                    <option value="">Selecione</option>
-                    <option value="active">Ativos</option>
-                    <option value="inactive">Inativos</option>
-                </select>
+            <div className={styles.container}>
+                <section>
+                    <span>
+                        <label htmlFor="search">Filtrar:</label>
+                        <select name="search" onChange={e => setSearch(e.target.value)}>
+                            <option value="">Todos</option>
+                            <option value="active">Ativos</option>
+                            <option value="inactive">Inativos</option>
+                        </select>
+                    </span>
+                    
+                    {isLoadingAllEmployees && <p>Carregando...</p>}
 
-                <ul>
-                    {renderEmployees}
-                </ul>
+                    {!isLoadingAllEmployees && employees && (
+                        <form onChange={e => setSelectedEmployee(e.target.value)}>
+                            <div>
+                                <input type="radio" name="employee" id="ranking" value="ranking" defaultChecked/>
+                                <label htmlFor="ranking">Mostrar ranking</label>
+                            </div>
+                            {renderEmployees}
+                        </form>
+                    )}
+                </section>
+
+                <section>
+                    {selectedEmployee !== "ranking" && isLoadingEmployee && <p>Carregando...</p>}
+
+                    {selectedEmployee !== "ranking" && !isLoadingEmployee && dataEmployee && (
+                        <BarChartWithNoSSR employee={selectedEmployee} data={dataEmployee}/>
+                    )}
+
+                    {selectedEmployee !== "ranking" && !isLoadingEmployee && !dataEmployee && errorEmployee && <p>{errorEmployee}</p>}
+
+                    {selectedEmployee === "ranking" && (
+                        <p>Mostrar ranking!</p>
+                    )}
+                </section>
             </div>
 
             <Footer/>
