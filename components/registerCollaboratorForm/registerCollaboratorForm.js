@@ -4,7 +4,7 @@ import axios from "axios"
 import { baseUrl } from "../../constants/baseUrl"
 import { LoadingButton } from "../loadingButton/loadingButton"
 
-export function RegisterCollaboratorForm ({user, project, token}) {
+export function RegisterCollaboratorForm ({user, project, token, reload, setReload}) {
     const [employee, setEmployee] = useState("")
     const [participation, setParticipation] = useState("")
     const [isLoading, setIsLoading] = useState(false)
@@ -35,6 +35,7 @@ export function RegisterCollaboratorForm ({user, project, token}) {
             setIsLoading(false)
             setEmployee("")
             setParticipation("")
+            setReload(!reload)
             alert("Colaborador adicionado com sucesso!")
         }).catch(err => {
             setIsLoading(false)
