@@ -1,27 +1,15 @@
 import Chart from "react-apexcharts"
 
-export default function PieChart ({projectInfo}) {
-    let totalParticipation = 0
+export default function PieChart ({collaborators}) {
+    const employees = collaborators.map(item => item.employee_name)
+    const participation = collaborators.map(item => item.participation)
 
-    projectInfo.collaborators.forEach(item => {
-      totalParticipation += item.participation  
-    })
-
-    if (totalParticipation < 100) {
-        const participationLeft = 100 - totalParticipation
-        projectInfo.collaborators.push({employee_name: "Outros", participation: participationLeft})
-    }
-
-    const collaborators = projectInfo.collaborators.map(item => item.employee_name)
-    const participation = projectInfo.collaborators.map(item => item.participation)
-
-    
     return (
         <Chart
             type="pie"
             series={participation}
             options={{
-                labels: collaborators,
+                labels: employees,
                 dataLabels: {
                     formatter(val, opts) {
                       const name = opts.w.globals.labels[opts.seriesIndex]

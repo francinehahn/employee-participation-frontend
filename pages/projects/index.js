@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react"
+import axios from "axios"
+import nookies from "nookies"
 import Head from "next/head"
 import { Footer } from "../../components/footer/footer"
 import { Header } from "../../components/header/header"
-import nookies from "nookies"
 import { baseUrl } from "../../constants/baseUrl"
-import styles from "./projects.module.scss"
 import { RegisterCollaboratorForm } from "../../components/registerCollaboratorForm/registerCollaboratorForm"
 import { CollaboratorsList } from "../../components/collaboratorsList/collaboratorsList"
-import axios from "axios"
 import dynamic from 'next/dynamic'
+import { getTotalParticipation } from "../../utils/getTotalParticipation"
+import styles from "./projects.module.scss"
 
 const PieChartWithNoSSR = dynamic(
     () => import("../../components/pieChart/pieChart"),
@@ -29,6 +30,7 @@ export default function Projects ({token}) {
     let isLoggedIn
     token.token? isLoggedIn = true : isLoggedIn = false
     
+    //get user info
     useEffect(() => {
         axios.get(`${baseUrl}users/account`, {
             headers: {
@@ -37,12 +39,17 @@ export default function Projects ({token}) {
         }).then(response => setUser(response.data))
         .catch(error => alert(error.response.data))
     }, [reload, token.token])
-    
-    const projectInfo = user && user.projects.filter(item => item.project_name === project)[0]
 
+    //get all project names to use in the select tag
     const allProjects = user && user.projects.map(item => {
         return <option key={item.project_name} value={item.project_name}>{item.project_name}</option>
     })
+
+    //info of the project selected
+    const selectedProject = user && project && user.projects.filter(item => item.project_name === project)[0]
+
+    //get collaborators of the project
+    const collaborators = user && project && getTotalParticipation(selectedProject.collaborators)
 
     return (
         <>
@@ -75,11 +82,11 @@ export default function Projects ({token}) {
                 {project !== "" && (
                     <section>
                         <div>
-                            <h2>{projectInfo.project_name}</h2>
-                            <p>Data de início: {projectInfo.start_date}</p>
-                            <p>Data de término: {projectInfo.end_date}</p>
+                            <h2>{selectedProject.project_name}</h2>
+                            <p>Data de início: {selectedProject.start_date}</p>
+                            <p>Data de término: {selectedProject.end_date}</p>
                             <h3>Colaboradores - participação</h3>
-                            <CollaboratorsList projectInfo={projectInfo}/>
+                            <CollaboratorsList collaborators={collaborators}/>
                         </div>
                         
                         <div>
@@ -91,12 +98,11 @@ export default function Projects ({token}) {
                                 </select>
                             </span>
 
-                            {chartType === "pieChart" && <PieChartWithNoSSR projectInfo={projectInfo}/>}
-                            {chartType === "barChart" && <BarChartWithNoSSR projectInfo={projectInfo}/>}
+                            {chartType === "pieChart" && <PieChartWithNoSSR collaborators={collaborators}/>}
+                            {chartType === "barChart" && <BarChartWithNoSSR collaborators={collaborators}/>}
                         </div>
                     </section>
                 )}
-                    
             </div>
 
             <Footer/>
