@@ -1,9 +1,9 @@
+import { useState } from "react"
+import { useRequestData } from "../../hooks/useRequestData"
 import Head from "next/head"
-import axios from "axios"
 import { Header } from "../../components/header/header"
 import { Footer } from "../../components/footer/footer"
 import nookies from "nookies"
-import { useEffect, useState } from "react"
 import { baseUrl } from "../../constants/baseUrl"
 import styles from "./employees.module.scss"
 import dynamic from "next/dynamic"
@@ -13,58 +13,25 @@ const BarChartWithNoSSR = dynamic(
     { ssr: false }
 )
 
+const RankingWithNoSSR = dynamic(
+    () => import("../../components/ranking/ranking"),
+    { ssr: false }
+)
+
 export default function Employees ({token}) {
-    const [search, setSearch] = useState("")
-    const [isLoadingAllEmployees, setIsLoadingAllEmployees] = useState(false)
-    const [employees, setEmployees] = useState("")
-    const [selectedEmployee, setSelectedEmployee] = useState("ranking")
-    const [dataEmployee, setDataEmployee] = useState("")
-    const [errorEmployee, setErrorEmployee] = useState("")
-    const [isLoadingEmployee, setIsLoadingEmployee] = useState(false)
-    
     let isLoggedIn
     token.token? isLoggedIn = true : isLoggedIn = false
 
-    useEffect(() => {
-        setIsLoadingAllEmployees(true)
-        setEmployees("")
-
-        axios.get(`${baseUrl}users/employees?search=${search}`, {
-            headers: {
-                Authorization: token.token
-            }
-        }).then(response => {
-            setIsLoadingAllEmployees(false)
-            setEmployees(response.data)
-        }).catch(error => {
-            setIsLoadingAllEmployees(false)
-            alert(error.response.data)
-        })
-    }, [search, token.token])
-
+    const [selectedEmployee, setSelectedEmployee] = useState("")
+    const [status, setStatus] = useState("")
+    const [reloadAllEmployees, setReloadAllEmployees] = useState(true)
+    const [reloadEmployee, setReloadEmployee] = useState(true)
     
-    useEffect(() => {
-        setIsLoadingEmployee(true)
-        setDataEmployee("")
-        setErrorEmployee("")
-
-        if (selectedEmployee !== "ranking") {
-            axios.get(`${baseUrl}users/employees/${selectedEmployee.replace(" ", "-")}`, {
-                headers: {
-                    Authorization: token.token
-                }
-            }).then(response => {
-                setIsLoadingEmployee(false)
-                setDataEmployee(response.data)
-            }).catch(error => {
-                setIsLoadingEmployee(false)
-                setErrorEmployee(error.response.data)
-            })
-        }
-        
-    }, [selectedEmployee, token.token])
-
-    const renderEmployees = employees && employees.map(item => {
+    const [dataRanking, isLoadingRanking, errorRanking] = useRequestData(`${baseUrl}users/projects/avg-participation`, token.token)
+    const [allEmployees, isLoadingAllEmployees, errorAllEmployees] = useRequestData(`${baseUrl}users/employees?search=${status}`, token.token, reloadAllEmployees)
+    const [dataEmployee, isLoadingEmployee, errorEmployee] = useRequestData(`${baseUrl}users/employees/${selectedEmployee.replace(" ", "-")}`, token.token, reloadEmployee)
+    
+    const renderEmployees = allEmployees && allEmployees.map(item => {
         return (
             <div key={item.employee_name}>
                 <input type="radio" name="employee" id={item.employee_name} value={item.employee_name}/>
@@ -88,8 +55,11 @@ export default function Employees ({token}) {
             <div className={styles.container}>
                 <section>
                     <span>
-                        <label htmlFor="search">Filtrar:</label>
-                        <select name="search" onChange={e => setSearch(e.target.value)}>
+                        <label htmlFor="status">Filtrar:</label>
+                        <select name="status" onChange={e => {
+                            setStatus(e.target.value)
+                            setReloadAllEmployees(!reloadAllEmployees)
+                        }}>
                             <option value="">Todos</option>
                             <option value="active">Ativos</option>
                             <option value="inactive">Inativos</option>
@@ -97,11 +67,15 @@ export default function Employees ({token}) {
                     </span>
                     
                     {isLoadingAllEmployees && <p>Carregando...</p>}
+                    {!isLoadingAllEmployees && !allEmployees && errorAllEmployees && <p>{errorAllEmployees}</p>}
 
-                    {!isLoadingAllEmployees && employees && (
-                        <form onChange={e => setSelectedEmployee(e.target.value)}>
+                    {!isLoadingAllEmployees && allEmployees && (
+                        <form onChange={e => {
+                            setSelectedEmployee(e.target.value)
+                            setReloadEmployee(!reloadEmployee)
+                        }}>
                             <div>
-                                <input type="radio" name="employee" id="ranking" value="ranking" defaultChecked/>
+                                <input type="radio" name="employee" id="ranking" value="" defaultChecked/>
                                 <label htmlFor="ranking">Mostrar ranking</label>
                             </div>
                             {renderEmployees}
@@ -110,17 +84,17 @@ export default function Employees ({token}) {
                 </section>
 
                 <section>
-                    {selectedEmployee !== "ranking" && isLoadingEmployee && <p>Carregando...</p>}
-
-                    {selectedEmployee !== "ranking" && !isLoadingEmployee && dataEmployee && (
-                        <BarChartWithNoSSR employee={selectedEmployee} data={dataEmployee}/>
+                    {selectedEmployee !== "" && isLoadingEmployee && <p>Carregando...</p>}
+                    {selectedEmployee !== "" && !isLoadingEmployee && dataEmployee && (
+                        <BarChartWithNoSSR data={dataEmployee} employee={selectedEmployee}/>
                     )}
+                    {selectedEmployee !== "" && !isLoadingEmployee && !dataEmployee && errorEmployee && <p>{errorEmployee}</p>}
 
-                    {selectedEmployee !== "ranking" && !isLoadingEmployee && !dataEmployee && errorEmployee && <p>{errorEmployee}</p>}
-
-                    {selectedEmployee === "ranking" && (
-                        <p>Mostrar ranking!</p>
+                    {selectedEmployee === "" && isLoadingRanking && <p>Carregando...</p>}
+                    {selectedEmployee === "" && !isLoadingRanking && dataRanking && (
+                        <RankingWithNoSSR data={dataRanking}/>
                     )}
+                    {selectedEmployee === "" && !isLoadingRanking && !dataRanking && errorRanking && <p>{errorRanking}</p>}
                 </section>
             </div>
 

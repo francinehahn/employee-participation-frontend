@@ -8,7 +8,7 @@ export default function EmployeeChart ({data, employee}) {
     })
 
     const projects = data.map(element => element.project_name)
-
+    
     return (                
         <>
             <h3>{employee}</h3>
