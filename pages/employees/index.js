@@ -24,13 +24,11 @@ export default function Employees ({token}) {
 
     const [selectedEmployee, setSelectedEmployee] = useState("")
     const [status, setStatus] = useState("")
-    const [reloadAllEmployees, setReloadAllEmployees] = useState(true)
-    const [reloadEmployee, setReloadEmployee] = useState(true)
     
     const [dataRanking, isLoadingRanking, errorRanking] = useRequestData(`${baseUrl}users/projects/avg-participation`, token.token)
-    const [allEmployees, isLoadingAllEmployees, errorAllEmployees] = useRequestData(`${baseUrl}users/employees?search=${status}`, token.token, reloadAllEmployees)
-    const [dataEmployee, isLoadingEmployee, errorEmployee] = useRequestData(`${baseUrl}users/employees/${selectedEmployee.replace(" ", "-")}`, token.token, reloadEmployee)
-    
+    const [allEmployees, isLoadingAllEmployees, setIsLoadingAllEmployees, errorAllEmployees] = useRequestData(`${baseUrl}users/employees?search=${status}`, token.token)
+    const [dataEmployee, isLoadingEmployee, setIsLoadingEmployee, errorEmployee] = useRequestData(`${baseUrl}users/employees/${selectedEmployee.replace(" ", "-")}`, token.token)
+    console.log(selectedEmployee, dataEmployee)
     const renderEmployees = allEmployees && allEmployees.map(item => {
         return (
             <div key={item.employee_name}>
@@ -58,7 +56,7 @@ export default function Employees ({token}) {
                         <label htmlFor="status">Filtrar:</label>
                         <select name="status" onChange={e => {
                             setStatus(e.target.value)
-                            setReloadAllEmployees(!reloadAllEmployees)
+                            setIsLoadingAllEmployees(true)
                         }}>
                             <option value="">Todos</option>
                             <option value="active">Ativos</option>
@@ -72,7 +70,7 @@ export default function Employees ({token}) {
                     {!isLoadingAllEmployees && allEmployees && (
                         <form onChange={e => {
                             setSelectedEmployee(e.target.value)
-                            setReloadEmployee(!reloadEmployee)
+                            setIsLoadingEmployee(true)
                         }}>
                             <div>
                                 <input type="radio" name="employee" id="ranking" value="" defaultChecked/>
