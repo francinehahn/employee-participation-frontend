@@ -7,6 +7,7 @@ import nookies from "nookies"
 import { baseUrl } from "../../constants/baseUrl"
 import styles from "./employees.module.scss"
 import dynamic from "next/dynamic"
+import { Loading } from "../../components/loading/loading"
 
 const BarChartWithNoSSR = dynamic(
     () => import("../../components/employeeChart/employeeChart"),
@@ -24,11 +25,11 @@ export default function Employees ({token}) {
 
     const [selectedEmployee, setSelectedEmployee] = useState("")
     const [status, setStatus] = useState("")
-    
+
     const [dataRanking, isLoadingRanking, errorRanking] = useRequestData(`${baseUrl}users/projects/avg-participation`, token.token)
     const [allEmployees, isLoadingAllEmployees, setIsLoadingAllEmployees, errorAllEmployees] = useRequestData(`${baseUrl}users/employees?search=${status}`, token.token)
-    const [dataEmployee, isLoadingEmployee, setIsLoadingEmployee, errorEmployee] = useRequestData(`${baseUrl}users/employees/${selectedEmployee.replace(" ", "-")}`, token.token)
-    console.log(selectedEmployee, dataEmployee)
+    const [dataEmployee, isLoadingEmployee, setIsLoadingEmployee, errorEmployee] = useRequestData(`${baseUrl}users/employees/info/${selectedEmployee.replace(" ", "-")}`, token.token) 
+    
     const renderEmployees = allEmployees && allEmployees.map(item => {
         return (
             <div key={item.employee_name}>
@@ -64,7 +65,7 @@ export default function Employees ({token}) {
                         </select>
                     </span>
                     
-                    {isLoadingAllEmployees && <p>Carregando...</p>}
+                    {isLoadingAllEmployees && <Loading insideButton={false}/>}
                     {!isLoadingAllEmployees && !allEmployees && errorAllEmployees && <p>{errorAllEmployees}</p>}
 
                     {!isLoadingAllEmployees && allEmployees && (
@@ -82,17 +83,17 @@ export default function Employees ({token}) {
                 </section>
 
                 <section>
-                    {selectedEmployee !== "" && isLoadingEmployee && <p>Carregando...</p>}
-                    {selectedEmployee !== "" && !isLoadingEmployee && dataEmployee && (
+                    {selectedEmployee !== "" && isLoadingEmployee && <Loading insideButton={false}/>}
+                    {selectedEmployee !== "" && !isLoadingEmployee && !dataEmployee && errorEmployee && <p>{errorEmployee}</p>}
+                    {selectedEmployee !== "" && !isLoadingEmployee && !errorEmployee && dataEmployee && (
                         <BarChartWithNoSSR data={dataEmployee} employee={selectedEmployee}/>
                     )}
-                    {selectedEmployee !== "" && !isLoadingEmployee && !dataEmployee && errorEmployee && <p>{errorEmployee}</p>}
 
-                    {selectedEmployee === "" && isLoadingRanking && <p>Carregando...</p>}
+                    {selectedEmployee === "" && isLoadingRanking && <Loading insideButton={false}/>}
                     {selectedEmployee === "" && !isLoadingRanking && dataRanking && (
                         <RankingWithNoSSR data={dataRanking}/>
                     )}
-                    {selectedEmployee === "" && !isLoadingRanking && !dataRanking && errorRanking && <p>{errorRanking}</p>}
+                    {selectedEmployee === "" && !isLoadingRanking && errorRanking && <p>{errorRanking}</p>}
                 </section>
             </div>
 

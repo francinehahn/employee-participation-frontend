@@ -4,7 +4,7 @@ import { Footer } from "../../components/footer/footer"
 import nookies from "nookies"
 import { useState } from "react"
 import axios from "axios"
-import { LoadingButton } from "../../components/loadingButton/loadingButton"
+import { Loading } from "../../components/loading/loading"
 import { baseUrl } from "../../constants/baseUrl"
 import styles from "./registration.module.scss"
 
@@ -126,7 +126,7 @@ export default function Registrations ({token}) {
                         {axiosProjectError && <p className={styles.error}>{axiosProjectError}</p>}
                         {projectSuccessMessage && <p className={styles.successMessage}>{projectSuccessMessage}</p>}
                         
-                        <button>{isLoadingProject? <LoadingButton/> : "Cadastrar"}</button>
+                        <button>{isLoadingProject? <Loading insideButton={true}/> : "Cadastrar"}</button>
                     </form>
                 </section>
 
@@ -151,7 +151,7 @@ export default function Registrations ({token}) {
                         {axiosEmployeeError && <p className={styles.error}>{axiosEmployeeError}</p>}
                         {employeeSuccessMessage && <p className={styles.successMessage}>{employeeSuccessMessage}</p>}
                         
-                        <button>{isLoadingEmployee? <LoadingButton/> : "Cadastrar"}</button>
+                        <button>{isLoadingEmployee? <Loading insideButton={true}/> : "Cadastrar"}</button>
                     </form>
                 </section>
             </div>

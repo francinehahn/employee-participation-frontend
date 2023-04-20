@@ -4,7 +4,7 @@ import { Header } from "../../components/header/header"
 import nookies from "nookies"
 import axios from "axios"
 import { baseUrl } from "../../constants/baseUrl"
-import { LoadingButton } from "../../components/loadingButton/loadingButton"
+import { Loading } from "../../components/loading/loading"
 import Router from "next/router"
 import styles from "./signup.module.scss"
 
@@ -109,7 +109,7 @@ export default function Signup ({token}) {
 
                     <p>{axiosError}</p>
 
-                    <button>{isLoading? <LoadingButton/> : 'Cadastrar'}</button>
+                    <button>{isLoading? <Loading insideButton={true}/> : 'Cadastrar'}</button>
                 </form>
             </div>
         </>

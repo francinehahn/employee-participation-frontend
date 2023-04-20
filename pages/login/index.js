@@ -5,7 +5,7 @@ import Router from "next/router"
 import nookies, { setCookie } from "nookies"
 import styles from "./login.module.scss"
 import Link from "next/link"
-import { LoadingButton } from "../../components/loadingButton/loadingButton"
+import { Loading } from "../../components/loading/loading"
 import { Header } from "../../components/header/header"
 import { baseUrl } from "../../constants/baseUrl"
 
@@ -86,7 +86,7 @@ export default function Login ({token}) {
                     </div>
 
                     <p>{axiosError}</p>
-                    <button>{isLoading? <LoadingButton/> : 'Entrar'}</button>
+                    <button>{isLoading? <Loading insideButton={true}/> : 'Entrar'}</button>
                 </form>
 
                 <span className={styles.span}>

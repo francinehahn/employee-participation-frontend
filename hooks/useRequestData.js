@@ -12,10 +12,12 @@ export function useRequestData(url, token) {
             response => {
                 setIsLoading(false)
                 setData(response.data)
+                setError("")
             }
         ).catch(err => {
             setIsLoading(false)
-            setError(err)
+            setError(err.response.data)
+            setData(undefined)
         })
     }, [url, token])
     

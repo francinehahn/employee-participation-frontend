@@ -2,7 +2,7 @@ import { useState } from "react"
 import styles from "./registerCollaboratorForm.module.scss"
 import axios from "axios"
 import { baseUrl } from "../../constants/baseUrl"
-import { LoadingButton } from "../loadingButton/loadingButton"
+import { Loading } from "../loading/loading"
 
 export function RegisterCollaboratorForm ({user, project, token, reload, setReload}) {
     const [employee, setEmployee] = useState("")
@@ -19,6 +19,8 @@ export function RegisterCollaboratorForm ({user, project, token, reload, setRelo
 
         if (participation === "") {
             alert("Insira o valor da participação.")
+            setIsLoading(false)
+            return
         }
 
         const body = {
@@ -60,7 +62,7 @@ export function RegisterCollaboratorForm ({user, project, token, reload, setRelo
                 <input type="number" placeholder="25%" name="participation" value={participation} onChange={e => setParticipation(e.target.value)}/>
             </span>
 
-            <button>{isLoading? <LoadingButton/> : "Cadastrar"}</button>
+            <button>{isLoading? <Loading insideButton={true}/> : "Cadastrar"}</button>
         </form>
     )
 }
