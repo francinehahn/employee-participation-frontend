@@ -8,18 +8,21 @@ import Link from "next/link"
 import { Loading } from "../../components/loading/loading"
 import { Header } from "../../components/header/header"
 import { baseUrl } from "../../constants/baseUrl"
+import {AiOutlineEyeInvisible} from "react-icons/ai"
+import {AiOutlineEye} from "react-icons/ai"
 
 
 export default function Login ({token}) {
+    let isLoggedIn
+    token.token? isLoggedIn = true : isLoggedIn = false
+
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [isLoading, setIsLoading] = useState(false)
     const [axiosError, setAxiosError] = useState("")
     const [emailError, setEmailError] = useState("")
     const [passwordError, setPasswordError] = useState("")
-
-    let isLoggedIn
-    token.token? isLoggedIn = true : isLoggedIn = false
+    const [inputType, setInputType] = useState("password")
 
     const handleLogin = async (e) => {
         e.preventDefault()
@@ -81,7 +84,10 @@ export default function Login ({token}) {
 
                     <div>
                         <label htmlFor="password">Senha</label>
-                        <input type={'password'} placeholder="********" name="password" value={password} onChange={e => setPassword(e.target.value)}/>
+                        <span className={styles.password}>
+                            <input type={inputType} placeholder="********" name="password" value={password} onChange={e => setPassword(e.target.value)}/>
+                            {inputType === "password"? <AiOutlineEyeInvisible onClick={() => setInputType("text")}/> : <AiOutlineEye onClick={() => setInputType("password")}/>}
+                        </span>
                         <p>{passwordError}</p>
                     </div>
 

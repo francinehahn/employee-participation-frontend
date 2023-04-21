@@ -7,9 +7,13 @@ import { baseUrl } from "../../constants/baseUrl"
 import { Loading } from "../../components/loading/loading"
 import Router from "next/router"
 import styles from "./signup.module.scss"
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 
 
 export default function Signup ({token}) {
+    let isLoggedIn
+    token.token? isLoggedIn = true : isLoggedIn = false
+
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -20,9 +24,8 @@ export default function Signup ({token}) {
     const [repeatPasswordError, setRepeatPasswordError] = useState("")
     const [axiosError, setAxiosError] = useState("")
     const [isLoading, setIsLoading] = useState(false)
-
-    let isLoggedIn
-    token.token? isLoggedIn = true : isLoggedIn = false
+    const [inputTypePass, setInputTypePass] = useState("password")
+    const [inputTypeRepeatPass, setInputTypeRepeatPass] = useState("password")
 
     const handleSignup = (e) => {
         e.preventDefault()
@@ -97,13 +100,19 @@ export default function Signup ({token}) {
 
                     <div>
                         <label htmlFor="password">Senha</label>
-                        <input type={'password'} placeholder="********" name="password" value={password} onChange={e => setPassword(e.target.value)}/>
+                        <span className={styles.password}>
+                            <input type={inputTypePass} placeholder="********" name="password" value={password} onChange={e => setPassword(e.target.value)}/>
+                            {inputTypePass === "password"? <AiOutlineEyeInvisible onClick={() => setInputTypePass("text")}/> : <AiOutlineEye onClick={() => setInputTypePass("password")}/>}
+                        </span>
                         <p>{passwordError}</p>
                     </div>
 
                     <div>
                         <label htmlFor="repeatPassword">Repita a senha</label>
-                        <input type={'password'} placeholder="********" name="repeatPassword" value={repeatPassword} onChange={e => setRepeatPassword(e.target.value)}/>
+                        <span className={styles.password}>
+                            <input type={inputTypeRepeatPass} placeholder="********" name="repeatPassword" value={repeatPassword} onChange={e => setRepeatPassword(e.target.value)}/>
+                            {inputTypeRepeatPass === "password"? <AiOutlineEyeInvisible onClick={() => setInputTypeRepeatPass("text")}/> : <AiOutlineEye onClick={() => setInputTypeRepeatPass("password")}/>}
+                        </span>
                         <p>{repeatPasswordError}</p>
                     </div>
 

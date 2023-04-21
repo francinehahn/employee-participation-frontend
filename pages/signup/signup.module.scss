@@ -37,3 +37,32 @@
         }
     }
 }
+
+.password {
+    display: flex;
+    align-items: center;
+    border: 1px solid #b5b5b5;
+    border-radius: 3px;
+    background-color: transparent;
+    position: relative;
+
+    input {
+        border: none;
+        width: 100%;
+        &:focus {
+            outline: 1.5px solid #7300e7;
+        }
+    }
+
+    svg {
+        margin-right: 1rem;
+        width: 1.2rem;
+        height: 1.2rem;
+        position: absolute;
+        left: 23rem;
+        color: rgb(124, 124, 124);
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
