@@ -37,7 +37,7 @@ export default function EmployeeChart ({data, employee}) {
                         }
                     }
                 }}
-                width={450}
+                width={480}
             />
         </>
     )
