@@ -8,6 +8,8 @@ import { baseUrl } from "../../constants/baseUrl"
 import styles from "./employees.module.scss"
 import dynamic from "next/dynamic"
 import { Loading } from "../../components/loading/loading"
+import {BsTrash3} from "react-icons/bs"
+import { EmployeesList } from "../../components/employeesList/employeesList"
 
 const BarChartWithNoSSR = dynamic(
     () => import("../../components/employeeChart/employeeChart"),
@@ -25,19 +27,14 @@ export default function Employees ({token}) {
 
     const [selectedEmployee, setSelectedEmployee] = useState("")
     const [status, setStatus] = useState("")
+    const [reload, setReload] = useState(false)
 
-    const [dataRanking, isLoadingRanking, errorRanking] = useRequestData(`${baseUrl}users/projects/avg-participation`, token.token)
-    const [allEmployees, isLoadingAllEmployees, setIsLoadingAllEmployees, errorAllEmployees] = useRequestData(`${baseUrl}users/employees?search=${status}`, token.token)
-    const [dataEmployee, isLoadingEmployee, setIsLoadingEmployee, errorEmployee] = useRequestData(`${baseUrl}users/employees/info/${selectedEmployee.replace(" ", "-")}`, token.token) 
+    const [dataRanking, isLoadingRanking, errorRanking] = useRequestData(`${baseUrl}users/projects/avg-participation`, token.token, reload)
+    const [allEmployees, isLoadingAllEmployees, setIsLoadingAllEmployees, errorAllEmployees] = useRequestData(`${baseUrl}users/employees?search=${status}`, token.token, reload)
+    const [dataEmployee, isLoadingEmployee, setIsLoadingEmployee, errorEmployee] = useRequestData(`${baseUrl}users/employees/info/${selectedEmployee.replace(" ", "-")}`, token.token, reload) 
     
     const renderEmployees = allEmployees && allEmployees.map(item => {
-        return (
-            <div key={item.employee_name}>
-                <input type="radio" name="employee" id={item.employee_name} value={item.employee_name}/>
-                <label htmlFor={item.employee_name}>{item.employee_name}</label>
-                <br></br>
-            </div>
-        )
+        return <EmployeesList key={item.employee_name} item={item} token={token.token} reload={reload} setReload={setReload}/>
     })
 
     return (
@@ -46,7 +43,7 @@ export default function Employees ({token}) {
                 <title>Funcionários | Employee Participation</title>
                 <meta name="description" content="O melhor site de avaliação de funcionários"/>
                 <meta name="keywords" content="participação dos funcionários, escala de participação, avaliação de funcionários"/>
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href="/icon.png" />
             </Head>
 
             <Header isLoggedIn={isLoggedIn}/>
@@ -83,17 +80,17 @@ export default function Employees ({token}) {
                 </section>
 
                 <section>
-                    {selectedEmployee !== "" && isLoadingEmployee && <Loading insideButton={false}/>}
+                    {selectedEmployee !== "" && isLoadingEmployee && <div className={styles.button}><Loading insideButton={false}/></div>}
                     {selectedEmployee !== "" && !isLoadingEmployee && !dataEmployee && errorEmployee && <p>{errorEmployee}</p>}
                     {selectedEmployee !== "" && !isLoadingEmployee && !errorEmployee && dataEmployee && (
                         <BarChartWithNoSSR data={dataEmployee} employee={selectedEmployee}/>
                     )}
 
-                    {selectedEmployee === "" && isLoadingRanking && <Loading insideButton={false}/>}
+                    {selectedEmployee === "" && isLoadingRanking && <div className={styles.button}><Loading insideButton={false}/></div>}
+                    {selectedEmployee === "" && !isLoadingRanking && errorRanking && <p>{errorRanking}</p>}
                     {selectedEmployee === "" && !isLoadingRanking && dataRanking && (
                         <RankingWithNoSSR data={dataRanking}/>
                     )}
-                    {selectedEmployee === "" && !isLoadingRanking && errorRanking && <p>{errorRanking}</p>}
                 </section>
             </div>
 

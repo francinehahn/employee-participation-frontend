@@ -32,7 +32,7 @@ export default function Ranking ({data}) {
                         }
                     }
                 }}
-                width={450}
+                width={550}
             />
         </>
     )
