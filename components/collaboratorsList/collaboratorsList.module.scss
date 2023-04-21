@@ -1,3 +1,19 @@
+@import "../../styles/base";
+
 .container {
     list-style: none;
+
+    li {
+        line-height: 2rem;
+    }
+    svg {
+        height: 1rem;
+        width: 1rem;
+        @include textColors("dark-purple");
+
+        &:hover {
+            cursor: pointer;
+            @include textColors("purple");
+        }
+    }
 }
