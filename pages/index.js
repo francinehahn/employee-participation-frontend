@@ -13,7 +13,7 @@ export default function Home({token}) {
         <title>Home | Employee Participation</title>
         <meta name="description" content="O melhor site de avaliação de funcionários"/>
         <meta name="keywords" content="participação dos funcionários, escala de participação, avaliação de funcionários"/>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/icon.png" />
       </Head>
 
       <Header isLoggedIn={isLoggedIn}/>
