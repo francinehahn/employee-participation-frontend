@@ -30,7 +30,7 @@ export default function PieChart ({collaborators}) {
                     show: false
                 }
             }}
-            width={430}
+            width={410}
         />
     )
 }

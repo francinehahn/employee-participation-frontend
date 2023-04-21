@@ -48,6 +48,23 @@
                     flex-direction: column;
                     align-items: flex-start;
                     
+                    span {
+                        display: flex;
+                        align-items: center;
+                        gap: 1rem;
+
+                        svg {
+                            width: 1.3rem;
+                            height: 1.3rem;
+                            @include textColors("dark-purple");
+
+                            &:hover {
+                                cursor: pointer;
+                                @include textColors("purple");
+                            }
+                        }
+                    }
+
                     h3 {
                         margin-top: 1.5rem;
                     }
@@ -73,4 +90,64 @@
             }
         }
     }
+}
+
+.editProject {
+    width: 25rem;
+    height: 30rem;
+    padding: 2rem;
+    @include bgColors("light-grey");
+    z-index: 5000;
+    position: absolute;
+    top: 5rem;
+    left: 35rem;
+    border-radius: 3px;
+    border: 1px solid black;
+    box-shadow: 6px 5px 5px #13002866;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    
+    div {
+        &:nth-child(1) {
+            display: flex;
+            justify-content: right;
+            button {
+                padding: .1rem .6rem;
+            }
+        }
+        
+        &:nth-child(2) {
+            h4 {
+                margin-bottom: .5rem;
+                font-size: 1.1rem;
+            }
+            form {
+                display: flex;
+                flex-direction: column;
+                gap: .5rem;
+
+                div {
+                    display: flex;
+                    flex-direction: column;
+
+                    input {
+                        padding: .3rem;
+                    }
+                }
+
+                button {
+                    padding: .4rem 0;
+                }
+            }
+        }
+    }
+}
+
+.errorMessage {
+    @include textColors("red")
+}
+
+.successMessage {
+    @include textColors("green")
 }
