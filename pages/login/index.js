@@ -10,14 +10,14 @@ import { Header } from "../../components/header/header"
 import { baseUrl } from "../../constants/baseUrl"
 import {AiOutlineEyeInvisible} from "react-icons/ai"
 import {AiOutlineEye} from "react-icons/ai"
+import { useForm } from "../../hooks/useForm"
 
 
 export default function Login ({token}) {
     let isLoggedIn
     token.token? isLoggedIn = true : isLoggedIn = false
 
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    const [form, onChange] = useForm({email: "", password: ""})
     const [isLoading, setIsLoading] = useState(false)
     const [axiosError, setAxiosError] = useState("")
     const [emailError, setEmailError] = useState("")
@@ -30,23 +30,18 @@ export default function Login ({token}) {
         setEmailError("")
         setPasswordError("")
         setAxiosError("")
-
-        const body = {
-            email,
-            password
-        }
-
-        if (email === "") {
+        
+        if (form.email === "") {
             setEmailError("Informe o seu email.")
             setIsLoading(false)
         }
-        if (password === "" || password.length < 8) {
+        if (form.password === "" || form.password.length < 8) {
             setPasswordError("A senha deve ter pelo menos 8 caracteres.")
             setIsLoading(false)
         }
         
-        if (email !== "" && password.length >= 8) {
-            axios.post(`${baseUrl}users/login`, body)
+        if (form.email !== "" && form.password.length >= 8) {
+            axios.post(`${baseUrl}users/login`, form)
             .then(response => {
                 setIsLoading(false)
                 setCookie(undefined, 'token', response.data.token, {
@@ -67,7 +62,7 @@ export default function Login ({token}) {
                 <title>Login | Employee Participation</title>
                 <meta name="description" content="O melhor site de avaliação de funcionários"/>
                 <meta name="keywords" content="participação dos funcionários, escala de participação, avaliação de funcionários"/>
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href="/icon.png" />
             </Head>
 
             <Header isLoggedIn={isLoggedIn}/>
@@ -78,14 +73,14 @@ export default function Login ({token}) {
                 <form onSubmit={handleLogin}>
                     <div>
                         <label htmlFor="email">E-mail</label>
-                        <input type={'email'} placeholder="maria.santos@gmail.com" name="email" value={email} onChange={e => setEmail(e.target.value)}/>
+                        <input type={'email'} placeholder="maria.santos@gmail.com" name="email" value={form.email} onChange={onChange}/>
                         <p>{emailError}</p>
                     </div>
 
                     <div>
                         <label htmlFor="password">Senha</label>
                         <span className={styles.password}>
-                            <input type={inputType} placeholder="********" name="password" value={password} onChange={e => setPassword(e.target.value)}/>
+                            <input type={inputType} placeholder="********" name="password" value={form.password} onChange={onChange}/>
                             {inputType === "password"? <AiOutlineEyeInvisible onClick={() => setInputType("text")}/> : <AiOutlineEye onClick={() => setInputType("password")}/>}
                         </span>
                         <p>{passwordError}</p>
