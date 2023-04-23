@@ -6,7 +6,10 @@ import axios from "axios"
 import { Header } from "../../components/header/header"
 import { Footer } from "../../components/footer/footer"
 import { Loading } from "../../components/loading/loading"
+import employee from "../../images/register-employee.jpg"
+import project from "../../images/register-project.jpg"
 import styles from "./registration.module.scss"
+import Image from "next/image"
 
 export default function Registrations ({token}) {
     const [employeeForm, employeeOnChange] = useState({employeeName: "", status: ""})
@@ -88,55 +91,64 @@ export default function Registrations ({token}) {
             <Header isLoggedIn={isLoggedIn}/>
 
             <div className={styles.container}>
-                <section className={styles.form}>
-                    <h2>Cadastre um novo projeto:</h2>
-                    <form onSubmit={handleProjectRegistration}>
-                        <div>
-                            <label htmlFor="projectName">Nome completo</label>
-                            <input type={'text'} placeholder="Sistema bancário" name="projectName" value={projectForm.projectName} onChange={projectOnChange}/>
-                            <p className={styles.error}>{projectNameError}</p>
-                        </div>
+                <section>
+                    <div>
+                        <h2>Cadastre um novo funcionário:</h2>
+                        <form onSubmit={handleEmployeeRegistration}>
+                            <div>
+                                <label htmlFor="employeeName">Nome completo</label>
+                                <input type={'text'} placeholder="Maria Silva" name="employeeName" value={employeeForm.employeeName} onChange={employeeOnChange}/>
+                                <p className={styles.error}>{employeeNameError}</p>
+                            </div>
 
-                        <div>
-                            <label htmlFor="startDate">Data de início</label>
-                            <input type={'date'} name="startDate" value={projectForm.startDate} onChange={projectOnChange} required/>
-                        </div>
+                            <div>
+                                <label htmlFor="status">Status (funcionário ou ex-funcionário)</label>
+                                <select name="status" onChange={employeeOnChange} required>
+                                    <option value="">Selecione</option>
+                                    <option value="active">Ativo</option>
+                                    <option value="inactive">Inativo</option>
+                                </select>
+                            </div>
 
-                        <div>
-                            <label htmlFor="endDate">Data de término</label>
-                            <input type={'date'} name="endDate" value={projectForm.endDate} onChange={projectOnChange} required/>
-                        </div>
+                            {axiosEmployeeError && <p className={styles.error}>{axiosEmployeeError}</p>}
+                            {employeeSuccessMessage && <p className={styles.successMessage}>{employeeSuccessMessage}</p>}
+                            
+                            <button>{isLoadingEmployee? <Loading insideButton={true}/> : "Cadastrar"}</button>
+                        </form>
+                    </div>
 
-                        {axiosProjectError && <p className={styles.error}>{axiosProjectError}</p>}
-                        {projectSuccessMessage && <p className={styles.successMessage}>{projectSuccessMessage}</p>}
-                        
-                        <button>{isLoadingProject? <Loading insideButton={true}/> : "Cadastrar"}</button>
-                    </form>
+                    <Image src={project} alt="Imagem de uma cartolina branca com vários post-its."/>
                 </section>
 
-                <section className={styles.form}>
-                    <h2>Cadastre um novo funcionário:</h2>
-                    <form onSubmit={handleEmployeeRegistration}>
-                        <div>
-                            <label htmlFor="employeeName">Nome completo</label>
-                            <input type={'text'} placeholder="Maria Silva" name="employeeName" value={employeeForm.employeeName} onChange={employeeOnChange}/>
-                            <p className={styles.error}>{employeeNameError}</p>
-                        </div>
+                <section>
+                    <Image src={employee} alt="Imagem de uma pessoa sendo contratada pelo empregador."/>
 
-                        <div>
-                            <label htmlFor="status">Status (funcionário ou ex-funcionário)</label>
-                            <select name="status" onChange={employeeOnChange} required>
-                                <option value="">Selecione</option>
-                                <option value="active">Ativo</option>
-                                <option value="inactive">Inativo</option>
-                            </select>
-                        </div>
+                    <div>
+                        <h2>Cadastre um novo projeto:</h2>
+                        <form onSubmit={handleProjectRegistration}>
+                            <div>
+                                <label htmlFor="projectName">Nome completo</label>
+                                <input type={'text'} placeholder="Sistema bancário" name="projectName" value={projectForm.projectName} onChange={projectOnChange}/>
+                                <p className={styles.error}>{projectNameError}</p>
+                            </div>
 
-                        {axiosEmployeeError && <p className={styles.error}>{axiosEmployeeError}</p>}
-                        {employeeSuccessMessage && <p className={styles.successMessage}>{employeeSuccessMessage}</p>}
-                        
-                        <button>{isLoadingEmployee? <Loading insideButton={true}/> : "Cadastrar"}</button>
-                    </form>
+                            <div>
+                                <label htmlFor="startDate">Data de início</label>
+                                <input type={'date'} name="startDate" value={projectForm.startDate} onChange={projectOnChange} required/>
+                            </div>
+
+                            <div>
+                                <label htmlFor="endDate">Data de término</label>
+                                <input type={'date'} name="endDate" value={projectForm.endDate} onChange={projectOnChange} required/>
+                            </div>
+
+                            {axiosProjectError && <p className={styles.error}>{axiosProjectError}</p>}
+                            {projectSuccessMessage && <p className={styles.successMessage}>{projectSuccessMessage}</p>}
+                            
+                            <button>{isLoadingProject? <Loading insideButton={true}/> : "Cadastrar"}</button>
+                        </form>
+                    </div>
+                    
                 </section>
             </div>
 
