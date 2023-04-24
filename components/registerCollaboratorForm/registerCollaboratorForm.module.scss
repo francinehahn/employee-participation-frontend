@@ -1,6 +1,9 @@
+@import "../../styles/base";
+
 .container {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 1.5rem;
     padding-bottom: 1rem;
     width: 90vw;
@@ -12,16 +15,21 @@
         gap: .5rem;
 
         input {
-            padding: .1rem .4rem;
+            padding: .2rem .4rem;
             width: 5rem;
         }
         select {
-            padding: .1rem .4rem;
+            padding: .2rem .4rem;
             width: 13rem;
         }
     }
 
     button {
-        padding: .2rem 1.1rem;
+        padding: .1rem 1.1rem;
+        font-size: 1.2rem;
     }
+}
+
+.button {
+    margin: .2rem 0;
 }

@@ -3,10 +3,10 @@ import styles from "./registerCollaboratorForm.module.scss"
 import axios from "axios"
 import { baseUrl } from "../../constants/baseUrl"
 import { Loading } from "../loading/loading"
+import { useForm } from "../../hooks/useForm"
 
 export function RegisterCollaboratorForm ({user, project, token, reload, setReload}) {
-    const [employee, setEmployee] = useState("")
-    const [participation, setParticipation] = useState("")
+    const [form, onChange] = useForm({employeeName: "", participation: ""})
     const [isLoading, setIsLoading] = useState(false)
 
     const allEmployees = user.employees.map(item => {
@@ -17,7 +17,7 @@ export function RegisterCollaboratorForm ({user, project, token, reload, setRelo
         e.preventDefault()
         setIsLoading(true)
 
-        if (participation === "") {
+        if (form.participation === "") {
             alert("Insira o valor da participação.")
             setIsLoading(false)
             return
@@ -25,8 +25,7 @@ export function RegisterCollaboratorForm ({user, project, token, reload, setRelo
 
         const body = {
             projectName: project,
-            employeeName: employee,
-            participation
+            ...form
         }
 
         axios.patch(`${baseUrl}users/projects/add-collaborator`, body, {
@@ -35,14 +34,10 @@ export function RegisterCollaboratorForm ({user, project, token, reload, setRelo
             }
         }).then(() => {
             setIsLoading(false)
-            setEmployee("")
-            setParticipation("")
             setReload(!reload)
             alert("Colaborador adicionado com sucesso!")
         }).catch(err => {
             setIsLoading(false)
-            setEmployee("")
-            setParticipation("")
             alert(err.response.data)
         })
     }
@@ -50,8 +45,8 @@ export function RegisterCollaboratorForm ({user, project, token, reload, setRelo
     return (
         <form className={styles.container} onSubmit={handleSubmit}>
             <span>
-                <label htmlFor="employee">Selecione o funcionário:</label>
-                <select name="employee" onChange={e => setEmployee(e.target.value)} required>
+                <label htmlFor="employeeName">Selecione o funcionário:</label>
+                <select name="employeeName" onChange={onChange} required>
                     <option value="">Selecione</option>
                     {allEmployees}
                 </select>
@@ -59,10 +54,10 @@ export function RegisterCollaboratorForm ({user, project, token, reload, setRelo
 
             <span>
                 <label htmlFor="participation">Participação (%):</label>
-                <input type="number" placeholder="25%" name="participation" value={participation} onChange={e => setParticipation(e.target.value)}/>
+                <input type="number" placeholder="25" name="participation" value={form.participation} onChange={onChange}/>
             </span>
 
-            <button>{isLoading? <Loading insideButton={true}/> : "Cadastrar"}</button>
+            <button>{isLoading? <span className={styles.button}><Loading insideButton={true}/></span> : '+'}</button>
         </form>
     )
 }

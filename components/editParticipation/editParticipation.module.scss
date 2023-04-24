@@ -1,0 +1,66 @@
+@import "../../styles/base";
+
+.container {
+    @include bgColors("light-grey");
+    width: 25rem;
+    height: 30rem;
+    padding: 2rem;
+    padding: 2rem;
+    z-index: 5000;
+    position: absolute;
+    top: 11vh;
+    left: 35vw;
+    border-radius: 3px;
+    border: 1px solid black;
+    box-shadow: 6px 5px 5px #13002866;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    
+    div {
+        &:nth-child(1) {
+            display: flex;
+            justify-content: right;
+            button {
+                padding: .1rem .6rem;
+            }
+        }
+        
+        &:nth-child(2) {
+            h4 {
+                margin-bottom: .5rem;
+                font-size: 1.1rem;
+            }
+            form {
+                display: flex;
+                flex-direction: column;
+                gap: .5rem;
+
+                select {
+                    padding: .3rem;
+                }
+
+                div {
+                    display: flex;
+                    flex-direction: column;
+
+                    input {
+                        padding: .3rem;
+                    }
+                }
+
+                button {
+                    padding: .4rem 0;
+                }
+            }
+        }
+    }
+}
+
+.errorMessage {
+    @include textColors("red")
+}
+
+.successMessage {
+    @include textColors("green")
+}

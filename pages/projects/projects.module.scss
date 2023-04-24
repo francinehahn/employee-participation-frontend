@@ -41,7 +41,7 @@
     
                     select {
                         width: 10rem;
-                        padding: .1rem .4rem;
+                        padding: .2rem .4rem;
                         color: white;
                         border: 1px solid white;
                         option {
@@ -70,6 +70,10 @@
                         display: flex;
                         align-items: center;
                         gap: 1rem;
+
+                        h2, h3 {
+                            @include textColors("dark-blue");
+                        }
 
                         svg {
                             width: 1.2rem;
@@ -110,66 +114,14 @@
     }
 }
 
-.editProject {
-    width: 25rem;
-    height: 30rem;
-    padding: 2rem;
-    @include bgColors("light-grey");
-    z-index: 5000;
-    position: absolute;
-    top: 11vh;
-    left: 35vw;
-    border-radius: 3px;
-    border: 1px solid black;
-    box-shadow: 6px 5px 5px #13002866;
+.message {
     display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    
-    div {
-        &:nth-child(1) {
-            display: flex;
-            justify-content: right;
-            button {
-                padding: .1rem .6rem;
-            }
-        }
-        
-        &:nth-child(2) {
-            h4 {
-                margin-bottom: .5rem;
-                font-size: 1.1rem;
-            }
-            form {
-                display: flex;
-                flex-direction: column;
-                gap: .5rem;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 5rem;
 
-                select {
-                    padding: .3rem;
-                }
-
-                div {
-                    display: flex;
-                    flex-direction: column;
-
-                    input {
-                        padding: .3rem;
-                    }
-                }
-
-                button {
-                    padding: .4rem 0;
-                }
-            }
-        }
+    svg {
+        width: 1.5rem;
+        height: 1.5rem;
     }
-}
-
-.errorMessage {
-    @include textColors("red")
-}
-
-.successMessage {
-    @include textColors("green")
 }

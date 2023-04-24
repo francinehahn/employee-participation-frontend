@@ -11,9 +11,8 @@ export default function PieChart ({collaborators}) {
             options={{
                 labels: employees,
                 dataLabels: {
-                    formatter(val, opts) {
-                        const name = opts.w.globals.labels[opts.seriesIndex]
-                        return [name, val.toFixed(1) + '%']
+                    formatter(val) {
+                        return [val + '%']
                     },
                     dropShadow: {
                         enabled: true,
@@ -27,10 +26,25 @@ export default function PieChart ({collaborators}) {
                     }
                 },
                 legend: {
-                    show: false
-                }
+                    show: true,
+                    position: 'right',
+                    markers: {
+                        width: 12,
+                        height: 12,
+                        radius: 0,
+                        offsetX: -15,
+                        offsetY: 13,
+                        radius: 10
+                    },
+                    itemMargin: {
+                        horizontal: 5,
+                        vertical: -3
+                    }
+                },
+                colors: ['#FFBF00', '#F980FF', '#AEE125', '#FF00ED', '#00BAFF', '#6984FF', '#8700FF', '#00FF94', '#3B00FF', '#008D17', '#FF4D00', '#00FFBA', '#7D0084', '#008460', '#A7B7FF', '#FF8383', '#97AB98', '#001584']
             }}
-            width={370}
+            width={450}
+            height={600}
         />
     )
 }

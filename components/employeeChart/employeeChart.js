@@ -47,9 +47,6 @@ export default function EmployeeChart ({data, employee}) {
                     },
                     dataLabels: {
                         enabled: false,
-                        style: {
-                            colors: ['#373737']
-                        }
                     },
                     responsive: [{
                         breakpoint: undefined,

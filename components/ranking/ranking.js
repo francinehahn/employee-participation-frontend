@@ -42,9 +42,6 @@ export default function Ranking ({data}) {
                     },
                     dataLabels: {
                         enabled: false,
-                        style: {
-                            colors: ['#373737']
-                        }
                     }
                 }}
                 width={650}
