@@ -4,7 +4,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    @include bgColors("purple");
+    @include bgColors("light-blue");
     padding: .2rem 5rem;
     position: sticky;
     top: 0;

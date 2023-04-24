@@ -10,15 +10,17 @@ import employee from "../../images/register-employee.jpg"
 import project from "../../images/register-project.jpg"
 import styles from "./registration.module.scss"
 import Image from "next/image"
+import { useForm } from "../../hooks/useForm"
+
 
 export default function Registrations ({token}) {
-    const [employeeForm, employeeOnChange] = useState({employeeName: "", status: ""})
+    const [employeeForm, employeeOnChange] = useForm({employeeName: "", status: ""})
     const [employeeNameError, setEmployeeNameError] = useState("")
     const [axiosEmployeeError, setAxiosEmployeeError] = useState("")
     const [employeeSuccessMessage, setEmployeeSuccessMessage] = useState("")
     const [isLoadingEmployee, setIsLoadingEmployee] = useState(false)
 
-    const [projectForm, projectOnChange] = useState({projectName: "", startDate: "", endDate: ""})
+    const [projectForm, projectOnChange] = useForm({projectName: "", startDate: "", endDate: ""})
     const [projectNameError, setProjectNameError] = useState("")
     const [axiosProjectError, setAxiosProjectError] = useState("")
     const [projectSuccessMessage, setProjectSuccessMessage] = useState("")

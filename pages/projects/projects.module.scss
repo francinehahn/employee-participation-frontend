@@ -1,8 +1,12 @@
 @import "../../styles/base";
 
+.button {
+    margin-top: 30vh;
+}
+
 .container {
-    min-height: 70.5vh;
-    margin: 2rem 5rem;
+    min-height: 75vh;
+    margin: 0 5rem 2rem 5rem;
 
     section {
         &:nth-child(1) {
@@ -10,14 +14,21 @@
             flex-direction: column;
             align-items: center;
             gap: 1rem;
-            border-bottom: 1px solid rgb(192, 192, 192);
             padding-bottom: 1rem;
 
             div {
                 display: flex;
+                justify-content: center;
                 align-items: center;
                 gap: 2rem;
+                width: 100vw;
+                padding: 1.5rem 0;
+                @include bgColors("light-blue");
 
+                h3 {
+                    color: white;
+                }
+                
                 span {
                     display: flex;
                     align-items: center;
@@ -25,12 +36,20 @@
 
                     label {
                         font-weight: 600;
-                        @include textColors("dark-purple")
+                        color: white;
                     }
     
                     select {
                         width: 10rem;
                         padding: .1rem .4rem;
+                        color: white;
+                        border: 1px solid white;
+                        option {
+                            color: black;
+                        }
+                        &:focus {
+                            outline: 1.5px solid white;
+                        }
                     }
                 }
             }
@@ -39,8 +58,7 @@
         &:nth-child(2) {
             margin-top: 1.5rem;
             display: flex;
-            justify-content: center;
-            gap: 25rem;
+            justify-content: space-around;
 
             div {
                 &:nth-child(1) {
@@ -56,11 +74,11 @@
                         svg {
                             width: 1.2rem;
                             height: 1.2rem;
-                            @include textColors("dark-purple");
+                            @include textColors("dark-blue");
 
                             &:hover {
                                 cursor: pointer;
-                                @include textColors("purple");
+                                @include textColors("light-blue");
                             }
                         }
 
@@ -71,13 +89,9 @@
                 }
 
                 &:nth-child(2) {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    gap: 1rem;
-
                     span {
                         display: flex;
+                        justify-content: center;
                         align-items: center;
                         gap: .5rem;
 
@@ -85,6 +99,10 @@
                             width: 10rem;
                             padding: .1rem;
                         }
+                    }
+
+                    div {
+                        margin-top: 1rem;
                     }
                 }
             }

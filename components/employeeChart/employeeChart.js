@@ -17,27 +17,33 @@ export default function EmployeeChart ({data, employee}) {
                 type="bar"
                 series={[{name: "Gráfico de barras", data: series}]}
                 options={{
+                    plotOptions: {
+                        bar: {
+                          horizontal: true
+                        }
+                    },
                     xaxis: {
                         categories: projects,
-                        title: {text: "Projetos"}
+                        title: {text: "Participação %"}
                     },
                     yaxis: {
-                        categories: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
-                        title: {text: "Participação %"}
+                        title: {text: "Projetos"}
                     },
                     fill: {
                         colors: ['#FFCF00']
                     },
                     dataLabels: {
-                        formatter: function (val) {
-                            return val + "%"
-                        },
+                        enabled: false,
                         style: {
                             colors: ['#373737']
                         }
-                    }
+                    },
+                    responsive: [{
+                        breakpoint: undefined,
+                        options: {},
+                    }]
                 }}
-                width={480}
+                width={550}
             />
         </>
     )

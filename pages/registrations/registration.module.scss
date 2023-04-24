@@ -2,7 +2,7 @@
 
 .container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     min-height: 69vh;
     margin: 10vh 7vw;
@@ -22,6 +22,7 @@
 
         div {
             h2 {
+                @include textColors("dark-blue");
                 margin-bottom: 1rem;
             }
         
@@ -29,7 +30,7 @@
                 display: flex;
                 flex-direction: column;
                 gap: .8rem;
-                width: 27rem;
+                width: 30rem;
         
                 div {
                     display: flex;
@@ -47,7 +48,7 @@
         }
 
         img {
-            width: 37vw;
+            width: 33vw;
             height: 45vh;
             border-radius: 3px;
         }

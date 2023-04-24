@@ -4,7 +4,6 @@ import axios from "axios"
 import { baseUrl } from "../../constants/baseUrl"
 
 export function CollaboratorsList ({project, collaborators, token, reload, setReload}) {
-    console.log({project, collaborators, token, reload, setReload})
     const handleDeleteCollaborator = (employeeName) => {
         if (employeeName === "Outros") {
             return

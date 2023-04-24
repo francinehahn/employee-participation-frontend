@@ -6,14 +6,14 @@ export default function PieChart ({collaborators}) {
 
     return (
         <Chart
-            type="pie"
+            type="donut"
             series={participation}
             options={{
                 labels: employees,
                 dataLabels: {
                     formatter(val, opts) {
-                      const name = opts.w.globals.labels[opts.seriesIndex]
-                      return [name, val.toFixed(1) + '%']
+                        const name = opts.w.globals.labels[opts.seriesIndex]
+                        return [name, val.toFixed(1) + '%']
                     },
                     dropShadow: {
                         enabled: true,
@@ -30,7 +30,7 @@ export default function PieChart ({collaborators}) {
                     show: false
                 }
             }}
-            width={410}
+            width={370}
         />
     )
 }

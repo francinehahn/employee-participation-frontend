@@ -4,11 +4,11 @@
     svg {
         width: 1.1rem;
         height: 1.1rem;
-        @include textColors("dark-purple");
+        @include textColors("dark-blue");
 
         &:hover {
             cursor: pointer;
-            @include textColors("purple");
+            @include textColors("light-blue");
         }
     }
 }

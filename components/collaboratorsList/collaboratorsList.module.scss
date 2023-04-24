@@ -2,6 +2,7 @@
 
 .container {
     list-style: none;
+    overflow-y: auto;
 
     li {
         line-height: 2rem;
@@ -9,11 +10,11 @@
     svg {
         height: 1rem;
         width: 1rem;
-        @include textColors("dark-purple");
+        @include textColors("dark-blue");
 
         &:hover {
             cursor: pointer;
-            @include textColors("purple");
+            @include textColors("light-blue");
         }
     }
 }

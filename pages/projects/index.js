@@ -32,7 +32,7 @@ export default function Projects ({token}) {
     token.token? isLoggedIn = true : isLoggedIn = false
 
     const [reload, setReload] = useState(false)
-    const [user] = useRequestData(`${baseUrl}users/account`, token.token, reload)
+    const [user, isLoadingUser] = useRequestData(`${baseUrl}users/account`, token.token, reload)
 
     const [project, setProject] = useState("")
     const [chartType, setChartType] = useState("pieChart")
@@ -59,9 +59,9 @@ export default function Projects ({token}) {
 
     //info of the selected project
     const selectedProject = user && project && user.projects.filter(item => item.project_name === project)[0]
-
+    
     //get collaborators of the selected project
-    const collaborators = user && project && getTotalParticipation(selectedProject.collaborators)
+    const collaborators = selectedProject && getTotalParticipation(selectedProject.collaborators)
 
     //http request to edit project info
     const handleEditProjectInfo = (e) => {
@@ -174,54 +174,60 @@ export default function Projects ({token}) {
             <Header isLoggedIn={isLoggedIn}/>
 
             <div className={styles.container}>
-                <section>
-                    <div>
-                        <h3>Bem vindo(a), {user && user.user_name}!</h3>
+                {isLoadingUser && <div className={styles.button}><Loading insideButton={false}/></div>}
 
-                        <span>
-                            <label htmlFor="project">Selecione o projeto:</label>
-                            <select name="project" onChange={e => setProject(e.target.value)}>
-                                <option value="">Selecione</option>
-                                {allProjects}
-                            </select>
-                        </span>
-                    </div>
+                {!isLoadingUser && user && (
+                    <>
+                        <section>
+                            <div>
+                                <h3>Bem vindo(a), {user.user_name}!</h3>
 
-                    {project && <RegisterCollaboratorForm user={user} project={project} token={token.token} reload={reload} setReload={setReload}/>}
-                </section>
+                                <span>
+                                    <label htmlFor="project">Selecione o projeto:</label>
+                                    <select name="project" onChange={e => setProject(e.target.value)}>
+                                        <option value="">Selecione</option>
+                                        {allProjects}
+                                    </select>
+                                </span>
+                            </div>
 
-                {project !== "" && (
-                    <section>
-                        <div>
-                            <span>
-                                <h2>{selectedProject.project_name}</h2>
-                                <FiEdit onClick={() => setShowEditProjectInfo(true)}/>
-                                <BsTrash3 onClick={handleDeleteProject}/>
-                            </span>
-                            <p>Data de início: {selectedProject.start_date}</p>
-                            <p>Data de término: {selectedProject.end_date}</p>
+                            {selectedProject && <RegisterCollaboratorForm user={user} project={project} token={token.token} reload={reload} setReload={setReload}/>}
+                        </section>
 
-                            <span>
-                                <h3>Colaboradores - participação %</h3>
-                                <FiEdit onClick={() => setShowEditParticipation(true)}/>
-                            </span>
-                            
-                            <CollaboratorsList project={project} collaborators={collaborators} token={token.token} reload={reload} setReload={setReload}/>
-                        </div>
-                        
-                        <div>
-                            <span>
-                                <label htmlFor="chartType">Tipo de gráfico</label>
-                                <select name="chartType" onChange={e => setChartType(e.target.value)} defaultValue={"pieChart"}>
-                                    <option value="pieChart">Pizza</option>
-                                    <option value="barChart">Barras</option>
-                                </select>
-                            </span>
+                        {selectedProject && (
+                            <section>
+                                <div>
+                                    <span>
+                                        <h2>{selectedProject.project_name}</h2>
+                                        <FiEdit onClick={() => setShowEditProjectInfo(true)}/>
+                                        <BsTrash3 onClick={handleDeleteProject}/>
+                                    </span>
+                                    <p>Data de início: {selectedProject.start_date}</p>
+                                    <p>Data de término: {selectedProject.end_date}</p>
 
-                            {chartType === "pieChart" && <PieChartWithNoSSR collaborators={collaborators}/>}
-                            {chartType === "barChart" && <BarChartWithNoSSR collaborators={collaborators}/>}
-                        </div>
-                    </section>
+                                    <span>
+                                        <h3>Colaboradores - participação %</h3>
+                                        <FiEdit onClick={() => setShowEditParticipation(true)}/>
+                                    </span>
+                                    
+                                    <CollaboratorsList project={project} collaborators={collaborators} token={token.token} reload={reload} setReload={setReload}/>
+                                </div>
+                                
+                                <div>
+                                    <span>
+                                        <label htmlFor="chartType">Tipo de gráfico</label>
+                                        <select name="chartType" onChange={e => setChartType(e.target.value)} defaultValue={"pieChart"}>
+                                            <option value="pieChart">Pizza</option>
+                                            <option value="barChart">Barras</option>
+                                        </select>
+                                    </span>
+
+                                    {chartType === "pieChart" && <PieChartWithNoSSR collaborators={collaborators}/>}
+                                    {chartType === "barChart" && <BarChartWithNoSSR collaborators={collaborators}/>}
+                                </div>
+                            </section>
+                        )}
+                    </>
                 )}
 
                 {showEditProjectInfo && (

@@ -20,12 +20,10 @@ body {
 
     h2 {
         font-size: 1.8rem;
-        @include textColors("dark-purple")
     }
 
     h3 {
         font-size: 1.4rem;
-        @include textColors("dark-purple")
     }
 
     select {
@@ -33,7 +31,7 @@ body {
         border-radius: 3px;
         background-color: transparent;
         &:focus {
-            outline: 1.5px solid #7300e7;
+            outline: 1.5px solid #00386f;
         }
     }
 
@@ -42,7 +40,7 @@ body {
         border-radius: 3px;
         background-color: transparent;
         &:focus {
-            outline: 1.5px solid #7300e7;
+            outline: 1.5px solid #00386f;
         }
     }
 
@@ -53,13 +51,23 @@ body {
     button {
         border: none;
         border-radius: 3px;
-        @include bgColors("purple");
+        @include bgColors("light-blue");
         color: white;
 
         &:hover {
             cursor: pointer;
-            @include bgColors("purple-hover");
+            @include bgColors("light-blue-hover");
             transition: all .2s ease 0s;
         }
+    }
+
+    &::-webkit-scrollbar {
+        width: 15px;
+    }
+    &::-webkit-scrollbar-track {
+        background: #e4e4e4;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: #c4c4c4;
     }
 }

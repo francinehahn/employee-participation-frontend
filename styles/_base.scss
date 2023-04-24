@@ -1,21 +1,24 @@
 @mixin bgColors($color) {
-    @if $color == 'purple' {
-        background-color: #7300e7
+    @if $color == 'light-blue' {
+        background-color: #00c3f9
     }
     @if $color == 'light-grey' {
         background-color: rgb(252, 252, 252)
     }
-    @if $color == 'purple-hover' {
-        background-color: #7400e7d3
+    @if $color == 'light-blue-hover' {
+        background-color: #00c8ff98
     }
 }
 
 @mixin textColors($color) {
-    @if $color == 'purple' {
-        color: #7300e7
+    @if $color == 'dark-blue' {
+        color: #001b5f
     }
-    @if $color == 'dark-purple' {
-        color: #3a0272
+    @if $color == 'dark-blue-hover' {
+        color: #001b5fbc
+    }
+    @if $color == 'light-blue' {
+        color: #00c3f9
     }
     @if $color == 'light-grey' {
         color: rgb(251, 251, 251)

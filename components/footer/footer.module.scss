@@ -5,7 +5,7 @@
     align-items: center;
     gap: 16vw;
     padding: 1rem 2rem;
-    @include bgColors("purple");
+    border-top: 1px solid rgb(192, 192, 192);
 
     div {
         &:nth-child(1) {
@@ -14,13 +14,13 @@
             
             a {
                 svg {
-                    @include textColors("light-grey");
+                    @include textColors("dark-blue");
                     height: 1.5rem;
                     width: 1.5rem;
     
                     &:hover {
                         cursor: pointer;
-                        @include textColors("light-grey-hover");
+                        @include textColors("dark-blue-hover");
                     }
                 }
             }
@@ -30,7 +30,8 @@
             p {
                 text-align: center;
                 font-weight: 400;
-                @include textColors("light-grey");
+                color: black;
+                font-size: .95rem;
             }
         }
     }

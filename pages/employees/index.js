@@ -8,7 +8,6 @@ import { baseUrl } from "../../constants/baseUrl"
 import styles from "./employees.module.scss"
 import dynamic from "next/dynamic"
 import { Loading } from "../../components/loading/loading"
-import {BsTrash3} from "react-icons/bs"
 import { EmployeesList } from "../../components/employeesList/employeesList"
 
 const BarChartWithNoSSR = dynamic(
@@ -67,9 +66,9 @@ export default function Employees ({token}) {
 
                     {!isLoadingAllEmployees && allEmployees && (
                         <form onChange={e => {
-                            setSelectedEmployee(e.target.value)
-                            setIsLoadingEmployee(true)
-                        }}>
+                                setSelectedEmployee(e.target.value)
+                                setIsLoadingEmployee(true)
+                            }}>
                             <div>
                                 <input type="radio" name="employee" id="ranking" value="" defaultChecked/>
                                 <label htmlFor="ranking">Mostrar ranking</label>

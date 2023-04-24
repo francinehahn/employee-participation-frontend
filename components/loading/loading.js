@@ -5,7 +5,7 @@ export function Loading({insideButton}) {
     insideButton? buttonStyle = styles.button : buttonStyle = styles.container 
     
     return (
-        <div className={buttonStyle}>
-        </div>
+        <span className={buttonStyle}>
+        </span>
     )
 }
