@@ -5,12 +5,16 @@ export default function Ranking ({data}) {
     const participation = data.map(item => item.avg_participation)
     let height
 
-    if (data.length < 10) {
+    if (data.length < 5) {
+        height = 300
+    } else if (data.length >= 5 && data.length < 10) {
         height = 400
     } else if (data.length >= 10 && data.length < 20) {
         height = 500
-    } else if (data.length >= 20) {
+    } else if (data.length >= 20 && data.length < 30) {
         height = 600
+    } else if (data.length >= 30) {
+        height = 900
     }
 
     return (
