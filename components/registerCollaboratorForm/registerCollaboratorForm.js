@@ -45,7 +45,7 @@ export function RegisterCollaboratorForm ({user, project, token, reload, setRelo
     return (
         <form className={styles.container} onSubmit={handleSubmit}>
             <span>
-                <label htmlFor="employeeName">Selecione o funcionário:</label>
+                <label htmlFor="employeeName">Cadastre um colaborador:</label>
                 <select name="employeeName" onChange={onChange} required>
                     <option value="">Selecione</option>
                     {allEmployees}
@@ -53,11 +53,13 @@ export function RegisterCollaboratorForm ({user, project, token, reload, setRelo
             </span>
 
             <span>
-                <label htmlFor="participation">Participação (%):</label>
-                <input type="number" placeholder="25" name="participation" value={form.participation} onChange={onChange}/>
-            </span>
+                <span>
+                    <label htmlFor="participation">Participação (%):</label>
+                    <input type="number" placeholder="25" name="participation" value={form.participation} onChange={onChange}/>
+                </span>
 
-            <button>{isLoading? <span className={styles.button}><Loading insideButton={true}/></span> : '+'}</button>
+                <button>{isLoading? <span className={styles.button}><Loading insideButton={true}/></span> : '+'}</button>
+            </span>
         </form>
     )
 }

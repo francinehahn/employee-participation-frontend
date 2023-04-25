@@ -90,7 +90,7 @@ export default function Projects ({token}) {
                     <>
                         <section>
                             <div>
-                                <h3>Bem vindo(a), {user.user_name}!</h3>
+                                <h2>Bem vindo(a), {user.user_name}!</h2>
 
                                 <span>
                                     <label htmlFor="project">Selecione o projeto:</label>
@@ -109,7 +109,7 @@ export default function Projects ({token}) {
                                 <>
                                 <div>
                                     <span>
-                                        <h2>{project}</h2>
+                                        <h3>{project}</h3>
                                         <FiEdit onClick={() => setShowEditProjectInfo(true)}/>
                                         <BsTrash3 onClick={handleDeleteProject}/>
                                     </span>
@@ -118,7 +118,7 @@ export default function Projects ({token}) {
                                     <p>Data de término: {selectedProject.end_date}</p>
 
                                     <span>
-                                        <h3>Colaboradores - %</h3>
+                                        <h4>Colaboradores - %</h4>
                                         <FiEdit onClick={() => setShowEditParticipation(true)}/>
                                     </span>
                                     
