@@ -82,7 +82,7 @@
 
                             &:hover {
                                 cursor: pointer;
-                                @include textColors("light-blue");
+                                @include textColors("dark-blue-hover");
                             }
                         }
 
