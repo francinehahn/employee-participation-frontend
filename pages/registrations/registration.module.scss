@@ -8,23 +8,39 @@
     section {
         &:nth-child(1) {
             background-image: url("../../images/register-employee.jpg");
-            height: 90vh;
+            height: 91vh;
         }
 
         &:nth-child(2) {
             background-image: url("../../images/register-project.jpg");
             background-size: cover;
-            height: 90vh;
+            height: 91vh;
         }
 
         div {
             background-color: white;
             padding: 1.5rem;
-            width: 28rem;
             margin: 20vh auto 0 auto;
+
+            @media screen and (min-width: 600px) {
+                width: 28rem;
+            }
+            @media screen and (min-width: 380px) and (max-width: 600px) {
+                width: 23rem;
+            }
+            @media screen and (max-width: 380px) {
+                width: 20rem;
+            }
             
             h2 {
                 @include textColors("dark-blue");
+
+                @media screen and (min-width: 800px) {
+                    font-size: 1.8rem;
+                }
+                @media screen and (max-width: 800px) {
+                    font-size: 1.6rem;
+                }
             }
             
             form {
