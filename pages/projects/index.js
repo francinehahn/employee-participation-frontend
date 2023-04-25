@@ -50,7 +50,7 @@ export default function Projects ({token}) {
     
     //get collaborators of the selected project
     const collaborators = selectedProject && getTotalParticipation(selectedProject.collaborators)
-
+    console.log(collaborators)
     //http request to delete the project
     const handleDeleteProject = () => {
         const body = {

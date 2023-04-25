@@ -14,7 +14,6 @@
         img {
             height: 3.3rem;
             width: 3.3rem;
-            
         }
     }
 
@@ -23,7 +22,7 @@
         gap: 2.1rem;
         a {
             font-size: 1rem;
-            @include textColors("light-grey");
+            color: white;
             text-decoration: none;
             font-weight: 400;
 

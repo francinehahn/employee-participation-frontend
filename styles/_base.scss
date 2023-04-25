@@ -12,7 +12,7 @@
 
 @mixin textColors($color) {
     @if $color == 'dark-blue' {
-        color: #001b5f
+        color: #002c9b
     }
     @if $color == 'dark-blue-hover' {
         color: #001b5fbc
