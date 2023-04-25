@@ -3,55 +3,165 @@
 .container {
     display: flex;
     flex-direction: column;
+    gap: 5rem;
+    margin-bottom: 5rem;
     
-
     section {
         &:nth-child(1) {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 0 0 0 6rem;
-            background-image: linear-gradient(#E5E5E5, #ededed, #EFEFEF, #EEEEEE, #ECECEC);
-            div {
-                h2 {
-                    @include textColors("dark-blue");
-                    font-size: 2.2rem;
-                    margin-bottom: 1rem;
-                }
+            @media screen and (min-width: 1500px) {
+                padding: 2rem 0 2rem 6rem;
+            }
+            @media screen and (min-width: 1000px) and (max-width: 1500px) {
+                padding: 4rem 0 6rem 4rem;
+            }
+            @media screen and (min-width: 700px) and (max-width: 1000px) {
+                padding: 5rem 6rem;
+            }
+            @media screen and (min-width: 500px) and (max-width: 700px) {
+                padding: 4rem 3rem;
+            }
+            @media screen and (max-width: 500px) {
+                padding: 4rem 2rem;
+            }
+        }
         
-                p {
-                    font-size: 1.3rem;
-                    line-height: 2rem;
+        &:nth-child(2), &:nth-child(3) {
+            @media screen and (min-width: 1200px) {
+                padding: 0 4rem 0 6rem;
+            }
+            @media screen and (min-width: 1000px) and (max-width: 1200px) {
+                padding: 0 3rem 0 5rem;
+            }
+            @media screen and (min-width: 700px) and (max-width: 1000px) {
+                padding: 0 6rem;
+            }
+            @media screen and (min-width: 500px) and (max-width: 700px) {
+                padding: 0 3rem;
+            }
+            @media screen and (max-width: 500px) {
+                padding: 0 2rem;
+            }
+        }
+
+        div {
+            h2 {
+                @include textColors("dark-blue");
+                margin-bottom: 1rem;
+
+                @media screen and (min-width: 1200px) {
+                    font-size: 2.2rem;
+                }
+                @media screen and (min-width: 800px) and (max-width: 1200px) {
+                    font-size: 1.9rem;
+                }
+                @media screen and (max-width: 800px) {
+                    font-size: 1.7rem;
                 }
             }
     
+            p {
+                line-height: 2rem;
+
+                @media screen and (min-width: 1000px) {
+                    font-size: 1.3rem;
+                }
+                @media screen and (min-width: 800px) and (max-width: 1000px) {
+                    font-size: 1.1rem;
+                }
+                @media screen and (max-width: 800px) {
+                    font-size: 1rem;
+                }
+            }
+        }
+
+        &:nth-child(1) {
+            display: flex;
+            
+            @media screen and (min-width: 1000px) {
+                justify-content: space-around;
+                align-items: center;
+                background-image: linear-gradient(#E5E5E5, #ededed, #EFEFEF, #EEEEEE, #ECECEC);
+            }
+
+            @media screen and (max-width: 1000px) {
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+                background-image: linear-gradient(#dfdfdf, #e7e7e7, #EFEFEF, #EEEEEE);
+            }
+
             img {
-                width: 90vw;
-                height: 90.5vh; 
+                @media screen and (min-width: 1400px) {
+                    width: 45rem;
+                    height: 37rem; 
+                }
+                @media screen and (min-width: 1280px) and (max-width: 1400px) {
+                    width: 40rem;
+                    height: 32rem; 
+                }
+                @media screen and (min-width: 1000px) and (max-width: 1280px) {
+                    width: 36rem;
+                    height: 28rem;
+                }
+                @media screen and (min-width: 700px) and (max-width: 1000px) {
+                    width: 32rem;
+                    height: 35rem; 
+                }
+                @media screen and (min-width: 500px) and (max-width: 700px) {
+                    width: 28rem;
+                    height: 32rem; 
+                }
+                @media screen and (max-width: 500px) {
+                    width: 23rem;
+                    height: 26rem; 
+                }
             }
         }
         
         &:nth-child(2), &:nth-child(3) {
             display: flex;
-            align-items: center;
-            gap: 4rem;
-            margin: 5rem 8rem;
-            
-            div {
-                h2 {
-                    @include textColors("dark-blue");
-                    margin-bottom: 1rem;
-                }
 
-                p {
-                    font-size: 1.2rem;
-                    line-height: 2rem;
-                }
+            @media screen and (min-width: 1000px) {
+                justify-content: center;
+                align-items: center;
+                gap: 4rem;
+            }
+
+            @media screen and (max-width: 1000px) {
+                flex-direction: column;
+                align-items: center;
+                gap: 4rem;
             }
 
             img {
-                width: 60vw;
-                height: 60vh;
+                @media screen and (min-width: 1500px) {
+                    width: 40rem;
+                    height: 28rem; 
+                }
+                @media screen and (min-width: 1200px) and (max-width: 1500px) {
+                    width: 37rem;
+                    height: 25rem; 
+                }
+                @media screen and (min-width: 1000px) and (max-width: 1200px) {
+                    width: 34rem;
+                    height: 22rem; 
+                }
+                @media screen and (min-width: 800px) and (max-width: 1000px) {
+                    width: 37rem;
+                    height: 26rem; 
+                }
+                @media screen and (min-width: 650px) and (max-width: 800px) {
+                    width: 34rem;
+                    height: 23rem; 
+                }
+                @media screen and (min-width: 500px) and (max-width: 650px) {
+                    width: 30rem;
+                    height: 20rem; 
+                }
+                @media screen and (max-width: 500px) {
+                    width: 23rem;
+                    height: 15rem; 
+                }
             }
         }
     }
