@@ -61,7 +61,7 @@ export default function Employees ({token}) {
                         </select>
                     </span>
                     
-                    {isLoadingAllEmployees && <Loading insideButton={false}/>}
+                    {isLoadingAllEmployees && <div className={styles.loading}><Loading insideButton={false}/></div>}
                     {!isLoadingAllEmployees && !allEmployees && errorAllEmployees && <p>{errorAllEmployees}</p>}
 
                     {!isLoadingAllEmployees && allEmployees && (

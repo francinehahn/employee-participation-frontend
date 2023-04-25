@@ -1,0 +1,58 @@
+@import "../styles/base";
+
+.container {
+    display: flex;
+    flex-direction: column;
+    
+
+    section {
+        &:nth-child(1) {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 0 0 6rem;
+            background-image: linear-gradient(#E5E5E5, #ededed, #EFEFEF, #EEEEEE, #ECECEC);
+            div {
+                h2 {
+                    @include textColors("dark-blue");
+                    font-size: 2.2rem;
+                    margin-bottom: 1rem;
+                }
+        
+                p {
+                    font-size: 1.3rem;
+                    line-height: 2rem;
+                }
+            }
+    
+            img {
+                width: 90vw;
+                height: 90vh;   
+            }
+        }
+        
+        &:nth-child(2), &:nth-child(3) {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            margin: 5rem 8rem;
+            
+            div {
+                h2 {
+                    @include textColors("dark-blue");
+                    margin-bottom: 1rem;
+                }
+
+                p {
+                    font-size: 1.2rem;
+                    line-height: 2rem;
+                }
+            }
+
+            img {
+                width: 60vw;
+                height: 60vh;
+            }
+        }
+    }
+}
