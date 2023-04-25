@@ -97,20 +97,20 @@ export default function Registrations ({token}) {
                     <div>
                         <h2>Cadastre um novo funcionário:</h2>
                         <form onSubmit={handleEmployeeRegistration}>
-                            <div>
+                            <span>
                                 <label htmlFor="employeeName">Nome completo</label>
                                 <input type={'text'} placeholder="Maria Silva" name="employeeName" value={employeeForm.employeeName} onChange={employeeOnChange}/>
                                 <p className={styles.error}>{employeeNameError}</p>
-                            </div>
+                            </span>
 
-                            <div>
+                            <span>
                                 <label htmlFor="status">Status (funcionário ou ex-funcionário)</label>
                                 <select name="status" onChange={employeeOnChange} required>
                                     <option value="">Selecione</option>
                                     <option value="active">Ativo</option>
                                     <option value="inactive">Inativo</option>
                                 </select>
-                            </div>
+                            </span>
 
                             {axiosEmployeeError && <p className={styles.error}>{axiosEmployeeError}</p>}
                             {employeeSuccessMessage && <p className={styles.successMessage}>{employeeSuccessMessage}</p>}
@@ -118,31 +118,27 @@ export default function Registrations ({token}) {
                             <button>{isLoadingEmployee? <Loading insideButton={true}/> : "Cadastrar"}</button>
                         </form>
                     </div>
-
-                    <Image src={project} alt="Imagem de uma cartolina branca com vários post-its."/>
                 </section>
 
                 <section>
-                    <Image src={employee} alt="Imagem de uma pessoa sendo contratada pelo empregador."/>
-
                     <div>
                         <h2>Cadastre um novo projeto:</h2>
                         <form onSubmit={handleProjectRegistration}>
-                            <div>
+                            <span>
                                 <label htmlFor="projectName">Nome completo</label>
                                 <input type={'text'} placeholder="Sistema bancário" name="projectName" value={projectForm.projectName} onChange={projectOnChange}/>
                                 <p className={styles.error}>{projectNameError}</p>
-                            </div>
+                            </span>
 
-                            <div>
+                            <span>
                                 <label htmlFor="startDate">Data de início</label>
                                 <input type={'date'} name="startDate" value={projectForm.startDate} onChange={projectOnChange} required/>
-                            </div>
+                            </span>
 
-                            <div>
+                            <span>
                                 <label htmlFor="endDate">Data de término</label>
                                 <input type={'date'} name="endDate" value={projectForm.endDate} onChange={projectOnChange} required/>
-                            </div>
+                            </span>
 
                             {axiosProjectError && <p className={styles.error}>{axiosProjectError}</p>}
                             {projectSuccessMessage && <p className={styles.successMessage}>{projectSuccessMessage}</p>}
@@ -150,7 +146,6 @@ export default function Registrations ({token}) {
                             <button>{isLoadingProject? <Loading insideButton={true}/> : "Cadastrar"}</button>
                         </form>
                     </div>
-                    
                 </section>
             </div>
 

@@ -2,37 +2,37 @@
 
 .container {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    flex-direction: column;
     min-height: 69vh;
-    margin: 10vh 7vw;
 
     section {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
         &:nth-child(1) {
-            margin-top: 5vh;
-            gap: 25vh;
+            background-image: url("../../images/register-employee.jpg");
+            height: 90vh;
         }
 
         &:nth-child(2) {
-            gap: 17vh;
+            background-image: url("../../images/register-project.jpg");
+            background-size: cover;
+            height: 90vh;
         }
 
         div {
+            background-color: white;
+            padding: 1.5rem;
+            width: 28rem;
+            margin: 20vh auto 0 auto;
+            
             h2 {
                 @include textColors("dark-blue");
-                margin-bottom: 1rem;
             }
-        
+            
             form {
                 display: flex;
                 flex-direction: column;
                 gap: .8rem;
-                width: 30rem;
         
-                div {
+                span {
                     display: flex;
                     flex-direction: column;
         
@@ -45,12 +45,6 @@
                     padding: .6rem 0;
                 }
             }
-        }
-
-        img {
-            width: 33vw;
-            height: 45vh;
-            border-radius: 3px;
         }
     }
 }

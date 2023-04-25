@@ -2,6 +2,9 @@
     @if $color == 'light-blue' {
         background-color: #00c3f9
     }
+    @if $color == 'dark-blue' {
+        background-color: #002c9b
+    }
     @if $color == 'light-grey' {
         background-color: rgb(252, 252, 252)
     }
@@ -15,7 +18,7 @@
         color: #002c9b
     }
     @if $color == 'dark-blue-hover' {
-        color: #001b5fbc
+        color: #001b5f9a
     }
     @if $color == 'light-blue' {
         color: #00c3f9
