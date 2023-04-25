@@ -5,10 +5,16 @@
     justify-content: space-between;
     align-items: center;
     @include bgColors("light-blue");
-    padding: .2rem 5rem;
     position: sticky;
     top: 0;
     z-index: 5000;
+
+    @media screen and (min-width: 600px) {
+        padding: .2rem 5rem;
+    }
+    @media screen and (max-width: 600px) {
+        padding: .2rem 3rem;
+    }
 
     a {
         img {
@@ -18,17 +24,74 @@
     }
 
     nav {
-        display: flex;
-        gap: 2.1rem;
-        a {
-            font-size: 1rem;
-            color: white;
-            text-decoration: none;
-            font-weight: 400;
+        @media screen and (min-width: 750px) {
+            display: flex;
+            gap: 2.1rem;
+            a {
+                font-size: 1rem;
+                color: white;
+                text-decoration: none;
+                font-weight: 400;
 
-            &:hover {
-                @include textColors("light-grey-hover");
-                transition: all .2s ease 0s;
+                &:hover {
+                    @include textColors("light-grey-hover");
+                    transition: all .2s ease 0s;
+                }
+            }   
+        }
+
+        @media screen and (max-width: 750px) {
+            display: none;
+        }
+    }
+
+    div {
+        &:nth-child(3) {
+            @media screen and (min-width: 750px) {
+                display: none;
+            }
+    
+            @media screen and (max-width: 750px) {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+    
+                div {
+                    background-color: white;
+                    width: 35px;
+                    height: 5px;
+                    border-radius: 4px;
+                }
+            }
+        }
+
+        &:nth-child(4) {
+            @include bgColors("light-blue");
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100vw;
+
+            button {
+                background-color: white;
+                color: black;
+                font-size: 1.1rem;
+                margin: 2.2vh 0 5vh 84vw;
+                padding: .3rem .8rem;
+            }
+
+            nav {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                a {
+                    color: white;
+                    text-decoration: none;
+                    font-size: 1.5rem;
+                    line-height: 3rem;
+                }
             }
         }
     }
