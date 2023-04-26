@@ -68,7 +68,13 @@ export default function Registrations ({token}) {
             return
         }
 
-        axios.patch(`${baseUrl}users/projects/register`, projectForm, {
+        const body = {
+            projectName: projectForm.projectName,
+            startDate: projectForm.startDate.split("-").reverse().join("/"),
+            endDate: projectForm.endDate.split("-").reverse().join("/")
+        }
+
+        axios.patch(`${baseUrl}users/projects/register`, body, {
             headers: {
                 Authorization: token.token
             }
