@@ -5,7 +5,7 @@
 }
 
 .container {
-    min-height: 77vh;
+    min-height: 78vh;
 
     section {
         &:nth-child(1) {
@@ -70,7 +70,7 @@
         }
         
         &:nth-child(2) {
-            padding: 1.5rem 0 3rem 0;
+            padding: 1.5rem 0;
             display: flex;
 
             @media screen and (min-width: 900px) {
