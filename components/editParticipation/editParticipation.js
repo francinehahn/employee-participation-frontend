@@ -66,30 +66,29 @@ export function EditParticipation ({token, project, selectedProject, setShowEdit
                 }}>x</button>
             </div>
 
-            <div>
-                <h4>Selecione o colaborador e edite a participação:</h4>
-
-                <form onSubmit={handleEditParticipation}>
-                    <select htmlFor="employeeName" name="employeeName" onChange={onChange}>
+            <form onSubmit={handleEditParticipation}>
+                <div>
+                    <label htmlFor="employeeName">Selecione o colaborador e edite a participação:</label>
+                    <select name="employeeName" onChange={onChange}>
                         <option value="">Selecione</option>
                         {selectedProject.collaborators.map(item => {
                             return <option key={item.employee_name} value={item.employee_name}>{item.employee_name}</option>
                         })}
                     </select>
+                </div>
 
-                    <div>
-                        <label htmlFor="participation">Nome do projeto</label>
-                        <input type="number" name="participation" placeholder="15" value={form.participation} onChange={onChange}/>
-                    </div>
+                <div>
+                    <label htmlFor="participation">Nome do projeto</label>
+                    <input type="number" name="participation" placeholder="15" value={form.participation} onChange={onChange}/>
+                </div>
 
-                    {successParticipation && <p className={styles.successMessage}>{successParticipation}</p>}
-                    {axiosErrorParticipation && <p className={styles.errorMessage}>{axiosErrorParticipation}</p>}
-                    {missingInfoParticipation && <p className={styles.errorMessage}>{missingInfoParticipation}</p>}
-                    {invalidEmployeeName && <p className={styles.errorMessage}>{invalidEmployeeName}</p>}
+                {successParticipation && <p className={styles.successMessage}>{successParticipation}</p>}
+                {axiosErrorParticipation && <p className={styles.errorMessage}>{axiosErrorParticipation}</p>}
+                {missingInfoParticipation && <p className={styles.errorMessage}>{missingInfoParticipation}</p>}
+                {invalidEmployeeName && <p className={styles.errorMessage}>{invalidEmployeeName}</p>}
 
-                    <button>{isLoading? <Loading insideButton={true}/> : 'Enviar'}</button>
-                </form>
-            </div>
+                <button>{isLoading? <Loading insideButton={true}/> : 'Enviar'}</button>
+            </form>
         </div>    
     )
 }

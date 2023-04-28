@@ -9,6 +9,9 @@ import styles from "./employees.module.scss"
 import dynamic from "next/dynamic"
 import { Loading } from "../../components/loading/loading"
 import { EmployeesList } from "../../components/employeesList/employeesList"
+import {FiEdit} from "react-icons/fi"
+import { EditEmployeeStatus } from "../../components/editEmployeeStatus/editEmployeeStatus"
+
 
 const BarChartWithNoSSR = dynamic(
     () => import("../../components/employeeChart/employeeChart"),
@@ -27,6 +30,7 @@ export default function Employees ({token}) {
     const [selectedEmployee, setSelectedEmployee] = useState("")
     const [status, setStatus] = useState("")
     const [reload, setReload] = useState(false)
+    const [showEditEmployeeStatusForm, setShowEditEmployeeStatusForm] = useState(false)
 
     const [dataRanking, isLoadingRanking, errorRanking] = useRequestData(`${baseUrl}users/projects/avg-participation`, token.token, reload)
     const [allEmployees, isLoadingAllEmployees, setIsLoadingAllEmployees, errorAllEmployees] = useRequestData(`${baseUrl}users/employees?search=${status}`, token.token, reload)
@@ -59,6 +63,8 @@ export default function Employees ({token}) {
                             <option value="active">Ativos</option>
                             <option value="inactive">Inativos</option>
                         </select>
+
+                        <FiEdit onClick={() => setShowEditEmployeeStatusForm(true)}/>
                     </span>
                     
                     {isLoadingAllEmployees && <div className={styles.loading}><Loading insideButton={false}/></div>}
@@ -91,6 +97,16 @@ export default function Employees ({token}) {
                         <RankingWithNoSSR data={dataRanking}/>
                     )}
                 </section>
+
+                {showEditEmployeeStatusForm && 
+                    <EditEmployeeStatus 
+                        setShowEditEmployeeStatusForm={setShowEditEmployeeStatusForm}
+                        allEmployees={allEmployees}
+                        token={token.token}
+                        reload={reload}
+                        setReload={setReload}
+                    />
+                }
             </div>
 
             <Footer/>
