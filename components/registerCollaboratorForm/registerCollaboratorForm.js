@@ -4,6 +4,7 @@ import axios from "axios"
 import { baseUrl } from "../../constants/baseUrl"
 import { Loading } from "../loading/loading"
 import { useForm } from "../../hooks/useForm"
+import Swal from "sweetalert2"
 
 export function RegisterCollaboratorForm ({user, project, token, reload, setReload}) {
     const [form, onChange] = useForm({employeeName: "", participation: ""})
@@ -18,7 +19,7 @@ export function RegisterCollaboratorForm ({user, project, token, reload, setRelo
         setIsLoading(true)
 
         if (form.participation === "") {
-            alert("Insira o valor da participação.")
+            Swal.fire("Insira o valor da participação.")
             setIsLoading(false)
             return
         }
@@ -35,10 +36,10 @@ export function RegisterCollaboratorForm ({user, project, token, reload, setRelo
         }).then(() => {
             setIsLoading(false)
             setReload(!reload)
-            alert("Colaborador adicionado com sucesso!")
+            Swal.fire("Colaborador adicionado com sucesso!")
         }).catch(err => {
             setIsLoading(false)
-            alert(err.response.data)
+            Swal.fire(err.response.data)
         })
     }
     

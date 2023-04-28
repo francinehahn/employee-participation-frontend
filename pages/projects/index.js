@@ -17,6 +17,7 @@ import {BsTrash3} from "react-icons/bs"
 import {GrSelect} from "react-icons/gr"
 import { EditProjectInfoForm } from "../../components/editProjectInfoForm/editProjectInfoForm"
 import { EditParticipationForm } from "../../components/editParticipationForm/editParticipationForm"
+import Swal from "sweetalert2"
 
 const PieChartWithNoSSR = dynamic(
     () => import("../../components/pieChart/pieChart"),
@@ -50,26 +51,33 @@ export default function Projects ({token}) {
     
     //get collaborators of the selected project
     const collaborators = selectedProject && getTotalParticipation(selectedProject.collaborators)
-    console.log(collaborators)
+    
     //http request to delete the project
     const handleDeleteProject = () => {
         const body = {
             projectName: project
         }
         
-        if (confirm("Você tem certeza que deseja deletar esse projeto?")) {
-            axios.patch(`${baseUrl}users/projects`, body, {
-                headers: {
-                    Authorization: token.token
-                }
-            }).then(() => {
-                alert("Projeto deletado!")
-                setReload(!reload)
-                setProject("")
-            }).catch(error => {
-                alert(error.response.data)
-            })
-        }
+        Swal.fire({
+            title: 'Você tem certeza que deseja deletar o projeto?',
+            showDenyButton: true,
+            confirmButtonText: 'Deletar',
+            denyButtonText: 'Cancelar',
+        }).then(result => {
+            if (result.isConfirmed) {
+                axios.patch(`${baseUrl}users/projects`, body, {
+                    headers: {
+                        Authorization: token.token
+                    }
+                }).then(() => {
+                    Swal.fire("Projeto deletado!")
+                    setReload(!reload)
+                    setProject("")
+                }).catch(error => {
+                    Swal.fire(error.response.data)
+                })
+            }
+        })
     }
 
     return (

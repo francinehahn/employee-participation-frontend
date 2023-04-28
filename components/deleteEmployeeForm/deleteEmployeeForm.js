@@ -17,22 +17,18 @@ export function DeleteEmployeeForm ({setShowDeleteEmployeeForm, allEmployees, to
         setSuccessMessage("")
         setAxiosError("")
 
-        if (confirm("Você tem certeza que deseja deletar esse funcionário da sua conta?")) {
-            axios.patch(`${baseUrl}users/employees/delete`, form, {
-                headers: {
-                    Authorization: token
-                }
-            }).then(() => {
-                setIsLoading(false)
-                setSuccessMessage("Funcionário deletado com sucesso!")
-                setReload(!reload)
-            }).catch(error => {
-                setIsLoading(false)
-                setAxiosError(error.response.data)
-            })
-        } else {
+        axios.patch(`${baseUrl}users/employees/delete`, form, {
+            headers: {
+                Authorization: token
+            }
+        }).then(() => {
             setIsLoading(false)
-        }
+            setSuccessMessage("Funcionário deletado com sucesso!")
+            setReload(!reload)
+        }).catch(error => {
+            setIsLoading(false)
+            setAxiosError(error.response.data)
+        })
     }
     
     return (
@@ -62,7 +58,7 @@ export function DeleteEmployeeForm ({setShowDeleteEmployeeForm, allEmployees, to
                     {successMessage && <p className={styles.successMessage}>{successMessage}</p>}
                     {axiosError && <p className={styles.errorMessage}>{axiosError}</p>}
 
-                    <button>{isLoading? <Loading insideButton={true}/> : 'Enviar'}</button>
+                    <button>{isLoading? <Loading insideButton={true}/> : 'Deletar'}</button>
                 </form>
             </div>
         </div>
