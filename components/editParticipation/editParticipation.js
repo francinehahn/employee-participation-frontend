@@ -68,17 +68,19 @@ export function EditParticipation ({token, project, selectedProject, setShowEdit
 
             <div>
                 <h4>Selecione o colaborador e edite a participação:</h4>
-
                 <form onSubmit={handleEditParticipation}>
-                    <select htmlFor="employeeName" name="employeeName" onChange={onChange}>
-                        <option value="">Selecione</option>
-                        {selectedProject.collaborators.map(item => {
-                            return <option key={item.employee_name} value={item.employee_name}>{item.employee_name}</option>
-                        })}
-                    </select>
+                    <div>
+                        <label htmlFor="employeeName">Selecione o colaborador</label>
+                        <select name="employeeName" onChange={onChange}>
+                            <option value="">Selecione</option>
+                            {selectedProject.collaborators.map(item => {
+                                return <option key={item.employee_name} value={item.employee_name}>{item.employee_name}</option>
+                            })}
+                        </select>
+                    </div>
 
                     <div>
-                        <label htmlFor="participation">Nome do projeto</label>
+                        <label htmlFor="participation">Participação</label>
                         <input type="number" name="participation" placeholder="15" value={form.participation} onChange={onChange}/>
                     </div>
 

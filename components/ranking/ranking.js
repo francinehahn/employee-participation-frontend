@@ -4,7 +4,7 @@ export default function Ranking ({data}) {
     const employees = data.map(item => item.employee_name)
     const participation = data.map(item => item.avg_participation)
     let height
-
+    
     if (data.length < 5) {
         height = 300
     } else if (data.length >= 5 && data.length < 10) {
