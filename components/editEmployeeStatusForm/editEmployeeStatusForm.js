@@ -5,7 +5,7 @@ import styles from "./editEmployeeStatus.module.scss"
 import axios from "axios"
 import { baseUrl } from "../../constants/baseUrl"
 
-export function EditEmployeeStatus ({setShowEditEmployeeStatusForm, allEmployees, token, reload, setReload}) {
+export function EditEmployeeStatusForm ({setShowEditEmployeeStatusForm, allEmployees, token, reload, setReload}) {
     const [form, onChange, clearInputs] = useForm({employeeName: "", newStatus: ""})
     const [isLoading, setIsLoading] = useState(false)
     const [axiosError, setAxiosError] = useState("")

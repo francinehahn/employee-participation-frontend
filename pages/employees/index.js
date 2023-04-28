@@ -5,15 +5,14 @@ import { Header } from "../../components/header/header"
 import { Footer } from "../../components/footer/footer"
 import nookies from "nookies"
 import { baseUrl } from "../../constants/baseUrl"
-import styles from "./employees.module.scss"
 import dynamic from "next/dynamic"
 import { Loading } from "../../components/loading/loading"
 import { EmployeesList } from "../../components/employeesList/employeesList"
+import { EditEmployeeStatusForm } from "../../components/editEmployeeStatusForm/editEmployeeStatusForm"
+import { DeleteEmployeeForm } from "../../components/deleteEmployeeForm/deleteEmployeeForm"
 import {FiEdit} from "react-icons/fi"
 import {BsTrash3} from "react-icons/bs"
-import { EditEmployeeStatus } from "../../components/editEmployeeStatus/editEmployeeStatus"
-import { DeleteEmployeeForm } from "../../components/deleteEmployeeForm/deleteEmployeeForm"
-
+import styles from "./employees.module.scss"
 
 const BarChartWithNoSSR = dynamic(
     () => import("../../components/employeeChart/employeeChart"),
@@ -103,7 +102,7 @@ export default function Employees ({token}) {
                 </section>
 
                 {showEditEmployeeStatusForm && 
-                    <EditEmployeeStatus 
+                    <EditEmployeeStatusForm
                         setShowEditEmployeeStatusForm={setShowEditEmployeeStatusForm}
                         allEmployees={allEmployees}
                         token={token.token}
