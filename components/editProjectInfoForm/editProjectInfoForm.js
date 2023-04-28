@@ -3,10 +3,10 @@ import axios from "axios"
 import { baseUrl } from "../../constants/baseUrl"
 import { useForm } from "../../hooks/useForm"
 import { Loading } from "../loading/loading"
-import styles from "./editProjectInfo.module.scss"
+import styles from "./editProjectInfoForm.module.scss"
 
 
-export function EditProjectInfo ({token, project, setShowEditProjectInfo, reload, setReload}) {
+export function EditProjectInfoForm ({token, project, setShowEditProjectInfo, reload, setReload}) {
     const [form, onChange, clearInputs] = useForm({newProjectName: "", startDate: "", endDate: ""})
     const [isLoading, setIsLoading] = useState(false)
     const [successEditProject, setSuccessEditProject] = useState("")

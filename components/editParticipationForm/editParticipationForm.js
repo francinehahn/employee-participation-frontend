@@ -3,10 +3,10 @@ import axios from "axios"
 import { baseUrl } from "../../constants/baseUrl"
 import { useForm } from "../../hooks/useForm"
 import { Loading } from "../loading/loading"
-import styles from "./editParticipation.module.scss"
+import styles from "./editParticipationForm.module.scss"
 
 
-export function EditParticipation ({token, project, selectedProject, setShowEditParticipation, reload, setReload}) {
+export function EditParticipationForm ({token, project, selectedProject, setShowEditParticipation, reload, setReload}) {
     const [form, onChange, clearInputs] = useForm({employeeName: "", participation: ""})
     const [isLoading, setIsLoading] = useState(false)
     const [successParticipation, setSuccessParticipation] = useState("")
