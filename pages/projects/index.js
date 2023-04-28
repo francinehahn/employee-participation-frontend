@@ -15,8 +15,8 @@ import { useRequestData } from "../../hooks/useRequestData"
 import {FiEdit} from "react-icons/fi"
 import {BsTrash3} from "react-icons/bs"
 import {GrSelect} from "react-icons/gr"
-import { EditProjectInfo } from "../../components/editProjectInfo/editProjectInfo"
-import { EditParticipation } from "../../components/editParticipation/editParticipation"
+import { EditProjectInfoForm } from "../../components/editProjectInfoForm/editProjectInfoForm"
+import { EditParticipationForm } from "../../components/editParticipationForm/editParticipationForm"
 
 const PieChartWithNoSSR = dynamic(
     () => import("../../components/pieChart/pieChart"),
@@ -150,8 +150,8 @@ export default function Projects ({token}) {
                     </>
                 )}
 
-                {showEditProjectInfo && <EditProjectInfo token={token.token} project={project} setShowEditProjectInfo={setShowEditProjectInfo} reload={reload} setReload={setReload}/>}
-                {showEditParticipation && <EditParticipation token={token.token} project={project} selectedProject={selectedProject} setShowEditParticipation={setShowEditParticipation} reload={reload} setReload={setReload}/>}
+                {showEditProjectInfo && <EditProjectInfoForm token={token.token} project={project} setShowEditProjectInfo={setShowEditProjectInfo} reload={reload} setReload={setReload}/>}
+                {showEditParticipation && <EditParticipationForm token={token.token} project={project} selectedProject={selectedProject} setShowEditParticipation={setShowEditParticipation} reload={reload} setReload={setReload}/>}
             </div>
 
             <Footer/>

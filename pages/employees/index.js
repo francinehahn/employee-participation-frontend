@@ -10,7 +10,9 @@ import dynamic from "next/dynamic"
 import { Loading } from "../../components/loading/loading"
 import { EmployeesList } from "../../components/employeesList/employeesList"
 import {FiEdit} from "react-icons/fi"
+import {BsTrash3} from "react-icons/bs"
 import { EditEmployeeStatus } from "../../components/editEmployeeStatus/editEmployeeStatus"
+import { DeleteEmployeeForm } from "../../components/deleteEmployeeForm/deleteEmployeeForm"
 
 
 const BarChartWithNoSSR = dynamic(
@@ -31,13 +33,14 @@ export default function Employees ({token}) {
     const [status, setStatus] = useState("")
     const [reload, setReload] = useState(false)
     const [showEditEmployeeStatusForm, setShowEditEmployeeStatusForm] = useState(false)
+    const [showDeleteEmployeeForm, setShowDeleteEmployeeForm] = useState(false)
 
     const [dataRanking, isLoadingRanking, errorRanking] = useRequestData(`${baseUrl}users/projects/avg-participation`, token.token, reload)
     const [allEmployees, isLoadingAllEmployees, setIsLoadingAllEmployees, errorAllEmployees] = useRequestData(`${baseUrl}users/employees?search=${status}`, token.token, reload)
     const [dataEmployee, isLoadingEmployee, setIsLoadingEmployee, errorEmployee] = useRequestData(`${baseUrl}users/employees/info/${selectedEmployee.replace(" ", "-")}`, token.token, reload) 
     
     const renderEmployees = allEmployees && allEmployees.map(item => {
-        return <EmployeesList key={item.employee_name} item={item} token={token.token} reload={reload} setReload={setReload}/>
+        return <EmployeesList key={item.employee_name} item={item}/>
     })
 
     return (
@@ -65,6 +68,7 @@ export default function Employees ({token}) {
                         </select>
 
                         <FiEdit onClick={() => setShowEditEmployeeStatusForm(true)}/>
+                        <BsTrash3 onClick={() => setShowDeleteEmployeeForm(true)}/>
                     </span>
                     
                     {isLoadingAllEmployees && <div className={styles.loading}><Loading insideButton={false}/></div>}
@@ -101,6 +105,16 @@ export default function Employees ({token}) {
                 {showEditEmployeeStatusForm && 
                     <EditEmployeeStatus 
                         setShowEditEmployeeStatusForm={setShowEditEmployeeStatusForm}
+                        allEmployees={allEmployees}
+                        token={token.token}
+                        reload={reload}
+                        setReload={setReload}
+                    />
+                }
+
+                {showDeleteEmployeeForm &&
+                    <DeleteEmployeeForm 
+                        setShowDeleteEmployeeForm = {setShowDeleteEmployeeForm}
                         allEmployees={allEmployees}
                         token={token.token}
                         reload={reload}

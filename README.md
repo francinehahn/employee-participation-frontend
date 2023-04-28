@@ -13,7 +13,7 @@ Data was consumed from an API developed by me. The link of the github repository
 ## 👩‍💻 Technologies
 - Javascript
 - Next.js
-- SCSS
+- Sass
 - Axios
 - Apex Charts
 - Nookies
@@ -37,8 +37,8 @@ Data was consumed from an API developed by me. The link of the github repository
     - Delete a collaborator from a project
 - `Employees Page:`
     - Data visualization of each registered employee
-    - Filter employees by ther status (active or inactive)
-    - ADICIONAR A EDIÇÃO DO STATUS DO EMPLOYEE!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    - Filter employees by their status (active or inactive)
+    - Edit employee status
     - Delete an employee
 
 ## 📷 Images
