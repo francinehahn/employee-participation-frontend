@@ -1,4 +1,4 @@
-# Employee Participation: Front end
+<h1 align="center">Front-end - Employee Participation: Cubo Challenge</h1>
 
 ## ℹ️ About
 This is a Next.js project that simulates a website where employers can register the participation rate of their employees in each of their projects. Data is represented through the use of common graphs (donut charts and bar charts). 
