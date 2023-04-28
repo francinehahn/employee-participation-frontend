@@ -36,3 +36,74 @@
         color: #1aaa00
     }
 }
+
+@mixin form() {
+    @include bgColors("light-grey");
+    padding: 2rem;
+    padding: 2rem;
+    z-index: 5000;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    top: 16vh;
+    left: 0;
+    right: 0;
+    border-radius: 3px;
+    border: 1px solid black;
+    box-shadow: 6px 5px 5px #13002866;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    @media screen and (min-width: 600px) {
+        width: 25rem;
+        height: 30rem;
+    }
+    @media screen and (max-width: 600px) {
+        width: 20rem;
+        height: 25rem;
+    }
+    
+    div {
+        &:nth-child(1) {
+            display: flex;
+            justify-content: right;
+            button {
+                padding: .1rem .6rem;
+            }
+        }
+
+        &:nth-child(2) {
+            h4 {
+                @include textColors("dark-blue");
+                margin-bottom: 1rem;
+
+                @media screen and (min-width: 800px) {
+                    font-size: 1.1rem;
+                }
+                @media screen and (max-width: 800px) {
+                    font-size: .9rem;
+                }
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                gap: .8rem;
+        
+                div {
+                    display: flex;
+                    flex-direction: column;
+            
+                    select, input {
+                        padding: .3rem;
+                    }
+                }
+        
+                button {
+                    padding: .4rem 0;
+                }
+            }
+        }
+    }   
+}

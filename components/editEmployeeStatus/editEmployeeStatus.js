@@ -42,31 +42,34 @@ export function EditEmployeeStatus ({setShowEditEmployeeStatusForm, allEmployees
                 }}>x</button>
             </div>
 
-            <form onSubmit={handleEditStatus}>
-                <div>
-                    <label htmlFor="employeeName">Selecione o funcionário e edite o seu status:</label>
-                    <select name="employeeName" onChange={onChange} required>
-                        <option value="">Selecione</option>
-                        {allEmployees.map(employee => {
-                            return <option key={employee.employee_name} value={employee.employee_name}>{employee.employee_name}</option>
-                        })}
-                    </select>
-                </div>
+            <div>
+                <h4>Selecione o funcionário e edite o status:</h4>
+                <form onSubmit={handleEditStatus}>
+                    <div>
+                        <label htmlFor="employeeName">Selecione o funcionário</label>
+                        <select name="employeeName" onChange={onChange} required>
+                            <option value="">Selecione</option>
+                            {allEmployees.map(employee => {
+                                return <option key={employee.employee_name} value={employee.employee_name}>{employee.employee_name}</option>
+                            })}
+                        </select>
+                    </div>
 
-                <div>
-                    <label htmlFor="newStatus">Nome do projeto</label>
-                    <select name="newStatus" onChange={onChange} required>
-                        <option value="">Selecione</option>
-                        <option value="active">Ativo</option>
-                        <option value="inactive">Inativo</option>
-                    </select>
-                </div>
+                    <div>
+                        <label htmlFor="newStatus">Novo status</label>
+                        <select name="newStatus" onChange={onChange} required>
+                            <option value="">Selecione</option>
+                            <option value="active">Ativo</option>
+                            <option value="inactive">Inativo</option>
+                        </select>
+                    </div>
 
-                {successMessage && <p className={styles.successMessage}>{successMessage}</p>}
-                {axiosError && <p className={styles.errorMessage}>{axiosError}</p>}
+                    {successMessage && <p className={styles.successMessage}>{successMessage}</p>}
+                    {axiosError && <p className={styles.errorMessage}>{axiosError}</p>}
 
-                <button>{isLoading? <Loading insideButton={true}/> : 'Enviar'}</button>
-            </form>
+                    <button>{isLoading? <Loading insideButton={true}/> : 'Enviar'}</button>
+                </form>
+            </div>
         </div>    
     )
 }
