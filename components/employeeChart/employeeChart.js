@@ -2,7 +2,7 @@ import Chart from "react-apexcharts"
 
 export default function EmployeeChart ({data, employee}) {
     const series = []
-    console.log(data)
+    
     data.forEach(element => {
         series.push({x: `${element.project_name} - ${element.end_date}`, y: element.participation, goals: [
             {
