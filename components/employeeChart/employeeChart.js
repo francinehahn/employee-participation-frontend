@@ -20,7 +20,7 @@ export default function EmployeeChart ({data, employee}) {
         series.push({x: element.project_name, y: element.participation})
     })
 
-    const projects = data.map(element => element.project_name)
+    const projects = data.map(element => `${element.project_name}-${element.end_date}`)
     
     return (                
         <>
