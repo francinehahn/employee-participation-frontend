@@ -30,7 +30,7 @@ export default function Home({token}) {
             <h2>A Employee Participation ajuda a sua empresa a analisar a performance de seus funcionários.</h2>
             <p>Aqui você pode cadastrar todos os projetos que já foram completados em sua empresa e todos os seus funcionários.</p>
           </div>
-          <Image src={homeChart} alt="Imagem de um gráfico de barras"/>
+          <Image src={homeChart} alt="Imagem de um gráfico de barras" priority/>
         </section>
 
         <section>
