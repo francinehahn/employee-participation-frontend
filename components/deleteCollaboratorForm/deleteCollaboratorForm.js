@@ -46,33 +46,35 @@ export function DeleteCollaboratorForm ({token, project, collaborators, setShowD
     return (
         <div className={styles.container}>
             <div>
-                <button onClick={() => {
-                    setShowDeleteCollaborator(false)
-                    setSuccessMessage("")
-                    setAxiosError("")
-                }}>x</button>
-            </div>
+                <span>
+                    <button onClick={() => {
+                        setShowDeleteCollaborator(false)
+                        setSuccessMessage("")
+                        setAxiosError("")
+                    }}>x</button>
+                </span>
 
-            <div>
-                <h4>Selecione o colaborador que deseja deletar:</h4>
+                <span>
+                    <h4>Selecione o colaborador que deseja deletar:</h4>
 
-                <form onSubmit={handleDeleteCollaborator}>
-                    <div>
-                        <label htmlFor="collaborator">Nome do colaborador</label>
-                        <select name="collaborator" value={form.collaborator} onChange={onChange} required>
-                            <option value="">Selecione</option>
-                            {collaborators.map(item => {
-                                return <option key={item.employee_name} value={item.employee_name}>{item.employee_name}</option>
-                            })}
-                        </select>
-                    </div>
-                    
-                    {successMessage && <p className={styles.successMessage}>{successMessage}</p>}
-                    {invalidCollaboratorMessage && <p className={styles.errorMessage}>{invalidCollaboratorMessage}</p>}
-                    {axiosError && <p className={styles.errorMessage}>{axiosError}</p>}
+                    <form onSubmit={handleDeleteCollaborator}>
+                        <span>
+                            <label htmlFor="collaborator">Nome do colaborador</label>
+                            <select name="collaborator" value={form.collaborator} onChange={onChange} required>
+                                <option value="">Selecione</option>
+                                {collaborators.map(item => {
+                                    return <option key={item.employee_name} value={item.employee_name}>{item.employee_name}</option>
+                                })}
+                            </select>
+                        </span>
+                        
+                        {successMessage && <p className={styles.successMessage}>{successMessage}</p>}
+                        {invalidCollaboratorMessage && <p className={styles.errorMessage}>{invalidCollaboratorMessage}</p>}
+                        {axiosError && <p className={styles.errorMessage}>{axiosError}</p>}
 
-                    <button>{isLoading? <Loading insideButton={true}/> : 'Deletar'}</button>
-                </form>
+                        <button>{isLoading? <Loading insideButton={true}/> : 'Deletar'}</button>
+                    </form>
+                </span>
             </div>
         </div>
     )

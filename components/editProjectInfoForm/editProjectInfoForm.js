@@ -51,39 +51,41 @@ export function EditProjectInfoForm ({token, project, setShowEditProjectInfo, re
     return (
         <div className={styles.container}>
             <div>
-                <button onClick={() => {
-                    setShowEditProjectInfo(false)
-                    setSuccessEditProject("")
-                    setAxiosErrorEditProject("")
-                    setMissingInfoEditProject("")
-                }}>x</button>
-            </div>
+                <span>
+                    <button onClick={() => {
+                        setShowEditProjectInfo(false)
+                        setSuccessEditProject("")
+                        setAxiosErrorEditProject("")
+                        setMissingInfoEditProject("")
+                    }}>x</button>
+                </span>
 
-            <div>
-                <h4>Edite apenas as informações desejadas:</h4>
+                <span>
+                    <h4>Edite apenas as informações desejadas:</h4>
 
-                <form onSubmit={handleEditProjectInfo}>
-                    <div>
-                        <label htmlFor="newProjectName">Nome do projeto</label>
-                        <input type="text" name="newProjectName" placeholder={project} value={form.newProjectName} onChange={onChange}/>
-                    </div>
+                    <form onSubmit={handleEditProjectInfo}>
+                        <span>
+                            <label htmlFor="newProjectName">Nome do projeto</label>
+                            <input type="text" name="newProjectName" placeholder={project} value={form.newProjectName} onChange={onChange}/>
+                        </span>
 
-                    <div>
-                        <label htmlFor="startDate">Data de início</label>
-                        <input type="date" name="startDate" value={form.startDate} onChange={onChange}/>
-                    </div>
+                        <span>
+                            <label htmlFor="startDate">Data de início</label>
+                            <input type="date" name="startDate" value={form.startDate} onChange={onChange}/>
+                        </span>
 
-                    <div>
-                        <label htmlFor="endDate">Data de início</label>
-                        <input type="date" name="endDate" value={form.newEndDate} onChange={onChange}/>
-                    </div>
+                        <span>
+                            <label htmlFor="endDate">Data de início</label>
+                            <input type="date" name="endDate" value={form.newEndDate} onChange={onChange}/>
+                        </span>
 
-                    {successEditProject && <p className={styles.successMessage}>{successEditProject}</p>}
-                    {axiosErrorEditProject && <p className={styles.errorMessage}>{axiosErrorEditProject}</p>}
-                    {missingInfoEditProject && <p className={styles.errorMessage}>{missingInfoEditProject}</p>}
+                        {successEditProject && <p className={styles.successMessage}>{successEditProject}</p>}
+                        {axiosErrorEditProject && <p className={styles.errorMessage}>{axiosErrorEditProject}</p>}
+                        {missingInfoEditProject && <p className={styles.errorMessage}>{missingInfoEditProject}</p>}
 
-                    <button>{isLoading? <Loading insideButton={true}/> : 'Enviar'}</button>
-                </form>
+                        <button>{isLoading? <Loading insideButton={true}/> : 'Enviar'}</button>
+                    </form>
+                </span>
             </div>
         </div>
     )

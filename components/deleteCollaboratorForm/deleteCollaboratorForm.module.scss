@@ -1,7 +1,7 @@
 @import "../../styles/base";
 
 .container {
-    @include form()
+    @include form();
 }
 
 .errorMessage {

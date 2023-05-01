@@ -3,8 +3,11 @@
 .container {
     list-style: none;
     height: 28vh;
-    padding-right: 6rem;
     overflow-y: auto;
+
+    @media screen and (min-width: 900px) {
+        padding-right: 3.6rem;
+    }
     
     &::-webkit-scrollbar {
         width: 10px;

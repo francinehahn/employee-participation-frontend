@@ -34,32 +34,34 @@ export function DeleteEmployeeForm ({setShowDeleteEmployeeForm, allEmployees, to
     return (
         <div className={styles.container}>
             <div>
-                <button onClick={() => {
-                    setShowDeleteEmployeeForm(false)
-                    setSuccessMessage("")
-                    setAxiosError("")
-                }}>x</button>
-            </div>
+                <span>
+                    <button onClick={() => {
+                        setShowDeleteEmployeeForm(false)
+                        setSuccessMessage("")
+                        setAxiosError("")
+                    }}>x</button>
+                </span>
 
-            <div>
-                <h4>Selecione o funcionário que deseja deletar:</h4>
+                <span>
+                    <h4>Selecione o funcionário que deseja deletar:</h4>
 
-                <form onSubmit={handleDeleteEmployee}>
-                    <div>
-                        <label htmlFor="employeeName">Nome do funcionário</label>
-                        <select name="employeeName" value={form.employeeName} onChange={onChange} required>
-                            <option value="">Selecione</option>
-                            {allEmployees.map(item => {
-                                return <option key={item.employee_name} value={item.employee_name}>{item.employee_name}</option>
-                            })}
-                        </select>
-                    </div>
-                    
-                    {successMessage && <p className={styles.successMessage}>{successMessage}</p>}
-                    {axiosError && <p className={styles.errorMessage}>{axiosError}</p>}
+                    <form onSubmit={handleDeleteEmployee}>
+                        <span>
+                            <label htmlFor="employeeName">Nome do funcionário</label>
+                            <select name="employeeName" value={form.employeeName} onChange={onChange} required>
+                                <option value="">Selecione</option>
+                                {allEmployees.map(item => {
+                                    return <option key={item.employee_name} value={item.employee_name}>{item.employee_name}</option>
+                                })}
+                            </select>
+                        </span>
+                        
+                        {successMessage && <p className={styles.successMessage}>{successMessage}</p>}
+                        {axiosError && <p className={styles.errorMessage}>{axiosError}</p>}
 
-                    <button>{isLoading? <Loading insideButton={true}/> : 'Deletar'}</button>
-                </form>
+                        <button>{isLoading? <Loading insideButton={true}/> : 'Deletar'}</button>
+                    </form>
+                </span>
             </div>
         </div>
     )
