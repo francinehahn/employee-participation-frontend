@@ -1,62 +1,75 @@
 import { useState } from "react"
+import styles from "./deleteCollaboratorForm.module.scss"
+import { useForm } from "../../hooks/useForm"
 import { Loading } from "../loading/loading"
 import axios from "axios"
-import { useForm } from "../../hooks/useForm"
-import styles from "./deleteEmployeeForm.module.scss"
 import { baseUrl } from "../../constants/baseUrl"
 
-export function DeleteEmployeeForm ({setShowDeleteEmployeeForm, allEmployees, token, reload, setReload}) {
-    const [form, onChange] = useForm({employeeName: ""})
+export function DeleteCollaboratorForm ({token, project, collaborators, setShowDeleteCollaborator, reload, setReload}) {
+    const [form, onChange] = useForm({collaborator: ""})
     const [isLoading, setIsLoading] = useState(false)
     const [successMessage, setSuccessMessage] = useState("")
+    const [invalidCollaboratorMessage, setInvalidCollaboratorMessage] = useState("")
     const [axiosError, setAxiosError] = useState("")
-
-    const handleDeleteEmployee = (e) => {
+    
+    const handleDeleteCollaborator = (e) => {
         e.preventDefault()
         setIsLoading(true)
-        setSuccessMessage("")
         setAxiosError("")
+        setSuccessMessage("")
 
-        axios.patch(`${baseUrl}users/employees/delete`, form, {
+        if (form.collaborator === "Outros") {
+            setIsLoading(false)
+            setInvalidCollaboratorMessage("Selecione um colaborador válido.")
+            return
+        }
+
+        const body = {
+            projectName: project,
+            collaborator: form.collaborator
+        }
+
+        axios.patch(`${baseUrl}users/projects/delete-collaborator`, body, {
             headers: {
                 Authorization: token
             }
         }).then(() => {
             setIsLoading(false)
-            setSuccessMessage("Funcionário deletado com sucesso!")
+            setSuccessMessage("Colaborador deletado com sucesso!")
             setReload(!reload)
         }).catch(error => {
             setIsLoading(false)
             setAxiosError(error.response.data)
         })
     }
-    
+
     return (
         <div className={styles.container}>
             <div>
                 <span>
                     <button onClick={() => {
-                        setShowDeleteEmployeeForm(false)
+                        setShowDeleteCollaborator(false)
                         setSuccessMessage("")
                         setAxiosError("")
                     }}>x</button>
                 </span>
 
                 <span>
-                    <h4>Selecione o funcionário que deseja deletar:</h4>
+                    <h4>Selecione o colaborador que deseja deletar:</h4>
 
-                    <form onSubmit={handleDeleteEmployee}>
+                    <form onSubmit={handleDeleteCollaborator}>
                         <span>
-                            <label htmlFor="employeeName">Nome do funcionário</label>
-                            <select name="employeeName" value={form.employeeName} onChange={onChange} required>
+                            <label htmlFor="collaborator">Nome do colaborador</label>
+                            <select name="collaborator" value={form.collaborator} onChange={onChange} required>
                                 <option value="">Selecione</option>
-                                {allEmployees.map(item => {
+                                {collaborators.map(item => {
                                     return <option key={item.employee_name} value={item.employee_name}>{item.employee_name}</option>
                                 })}
                             </select>
                         </span>
                         
                         {successMessage && <p className={styles.successMessage}>{successMessage}</p>}
+                        {invalidCollaboratorMessage && <p className={styles.errorMessage}>{invalidCollaboratorMessage}</p>}
                         {axiosError && <p className={styles.errorMessage}>{axiosError}</p>}
 
                         <button>{isLoading? <Loading insideButton={true}/> : 'Deletar'}</button>

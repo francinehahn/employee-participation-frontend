@@ -18,6 +18,7 @@ import {GrSelect} from "react-icons/gr"
 import { EditProjectInfoForm } from "../../components/editProjectInfoForm/editProjectInfoForm"
 import { EditParticipationForm } from "../../components/editParticipationForm/editParticipationForm"
 import Swal from "sweetalert2"
+import { DeleteCollaboratorForm } from "../../components/deleteCollaboratorForm/deleteCollaboratorForm"
 
 const PieChartWithNoSSR = dynamic(
     () => import("../../components/pieChart/pieChart"),
@@ -40,6 +41,7 @@ export default function Projects ({token}) {
     const [chartType, setChartType] = useState("pieChart")
     const [showEditProjectInfo, setShowEditProjectInfo] = useState(false)
     const [showEditParticipation, setShowEditParticipation] = useState(false)
+    const [showDeleteCollaborator, setShowDeleteCollaborator] = useState(false)
 
     //get all project names to use in the select tag
     const allProjects = user && user.projects.map(item => {
@@ -128,6 +130,7 @@ export default function Projects ({token}) {
                                     <span>
                                         <h4>Colaboradores - %</h4>
                                         <FiEdit onClick={() => setShowEditParticipation(true)}/>
+                                        <BsTrash3 onClick={() => setShowDeleteCollaborator(true)}/>
                                     </span>
                                     
                                     <CollaboratorsList project={project} collaborators={collaborators} token={token.token} reload={reload} setReload={setReload}/>
@@ -160,6 +163,7 @@ export default function Projects ({token}) {
 
                 {showEditProjectInfo && <EditProjectInfoForm token={token.token} project={project} setShowEditProjectInfo={setShowEditProjectInfo} reload={reload} setReload={setReload}/>}
                 {showEditParticipation && <EditParticipationForm token={token.token} project={project} selectedProject={selectedProject} setShowEditParticipation={setShowEditParticipation} reload={reload} setReload={setReload}/>}
+                {showDeleteCollaborator && <DeleteCollaboratorForm token={token.token} project={project} collaborators={collaborators} setShowDeleteCollaborator={setShowDeleteCollaborator} reload={reload} setReload={setReload}/>}
             </div>
 
             <Footer/>

@@ -8,6 +8,9 @@
     @if $color == 'light-grey' {
         background-color: rgb(252, 252, 252)
     }
+    @if $color == 'light-grey-transparent' {
+        background-color: rgba(252, 252, 252, 0.771)
+    }
     @if $color == 'light-blue-hover' {
         background-color: #00c8ff98
     }
@@ -38,72 +41,83 @@
 }
 
 @mixin form() {
-    @include bgColors("light-grey");
-    padding: 2rem;
-    padding: 2rem;
-    z-index: 5000;
     position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    top: 16vh;
+    top: 0;
     left: 0;
-    right: 0;
-    border-radius: 3px;
-    border: 1px solid black;
-    box-shadow: 6px 5px 5px #13002866;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+    height: 100%;
+    width: 100%;
+    @include bgColors("light-grey-transparent");
+    z-index: 10000;
 
-    @media screen and (min-width: 600px) {
-        width: 25rem;
-        height: 30rem;
-    }
-    @media screen and (max-width: 600px) {
-        width: 20rem;
-        height: 25rem;
-    }
-    
     div {
-        &:nth-child(1) {
-            display: flex;
-            justify-content: right;
-            button {
-                padding: .1rem .6rem;
-            }
+        @include bgColors("light-grey");
+        padding: 2rem;
+        padding: 2rem;
+        border-radius: 3px;
+        border: 1px solid black;
+        box-shadow: 6px 5px 5px #13002866;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        top: 16vh;
+        left: 0;
+        right: 0;
+
+        @media screen and (min-width: 600px) {
+            width: 25rem;
+            height: 30rem;
+        }
+        @media screen and (max-width: 600px) {
+            width: 20rem;
+            height: 25rem;
         }
 
-        &:nth-child(2) {
-            h4 {
-                @include textColors("dark-blue");
-                margin-bottom: 1rem;
+        span {
+            @include bgColors("light-grey");
 
-                @media screen and (min-width: 800px) {
-                    font-size: 1.1rem;
-                }
-                @media screen and (max-width: 800px) {
-                    font-size: .9rem;
+            &:nth-child(1) {
+                display: flex;
+                justify-content: right;
+                button {
+                    padding: .1rem .6rem;
                 }
             }
 
-            form {
-                display: flex;
-                flex-direction: column;
-                gap: .8rem;
-        
-                div {
-                    display: flex;
-                    flex-direction: column;
-            
-                    select, input {
-                        padding: .3rem;
+            &:nth-child(2) {
+                h4 {
+                    @include textColors("dark-blue");
+                    margin-bottom: 1rem;
+    
+                    @media screen and (min-width: 800px) {
+                        font-size: 1.1rem;
+                    }
+                    @media screen and (max-width: 800px) {
+                        font-size: .9rem;
                     }
                 }
-        
-                button {
-                    padding: .4rem 0;
+    
+                form {
+                    display: flex;
+                    flex-direction: column;
+                    gap: .8rem;
+            
+                    span {
+                        display: flex;
+                        flex-direction: column;
+                
+                        select, input {
+                            padding: .3rem;
+                        }
+                    }
+            
+                    button {
+                        padding: .4rem 0;
+                    }
                 }
             }
-        }
-    }   
+        }   
+    }    
 }

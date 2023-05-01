@@ -57,40 +57,42 @@ export function EditParticipationForm ({token, project, selectedProject, setShow
     return (
         <div className={styles.container}>
             <div>
-                <button onClick={() => {
-                    setShowEditParticipation(false)
-                    setSuccessParticipation("")
-                    setAxiosErrorParticipation("")
-                    setMissingInfoParticipation("")
-                    setInvalidEmployeeName("")
-                }}>x</button>
-            </div>
+                <span>
+                    <button onClick={() => {
+                        setShowEditParticipation(false)
+                        setSuccessParticipation("")
+                        setAxiosErrorParticipation("")
+                        setMissingInfoParticipation("")
+                        setInvalidEmployeeName("")
+                    }}>x</button>
+                </span>
 
-            <div>
-                <h4>Selecione o colaborador e edite a participação:</h4>
-                <form onSubmit={handleEditParticipation}>
-                    <div>
-                        <label htmlFor="employeeName">Selecione o colaborador</label>
-                        <select name="employeeName" onChange={onChange}>
-                            <option value="">Selecione</option>
-                            {selectedProject.collaborators.map(item => {
-                                return <option key={item.employee_name} value={item.employee_name}>{item.employee_name}</option>
-                            })}
-                        </select>
-                    </div>
+                <span>
+                    <h4>Selecione o colaborador e edite a participação:</h4>
+                    <form onSubmit={handleEditParticipation}>
+                        <span>
+                            <label htmlFor="employeeName">Selecione o colaborador</label>
+                            <select name="employeeName" onChange={onChange}>
+                                <option value="">Selecione</option>
+                                {selectedProject.collaborators.map(item => {
+                                    return <option key={item.employee_name} value={item.employee_name}>{item.employee_name}</option>
+                                })}
+                            </select>
+                        </span>
 
-                    <div>
-                        <label htmlFor="participation">Participação</label>
-                        <input type="number" name="participation" placeholder="15" value={form.participation} onChange={onChange}/>
-                    </div>
+                        <span>
+                            <label htmlFor="participation">Participação</label>
+                            <input type="number" name="participation" placeholder="15" value={form.participation} onChange={onChange}/>
+                        </span>
 
-                    {successParticipation && <p className={styles.successMessage}>{successParticipation}</p>}
-                    {axiosErrorParticipation && <p className={styles.errorMessage}>{axiosErrorParticipation}</p>}
-                    {missingInfoParticipation && <p className={styles.errorMessage}>{missingInfoParticipation}</p>}
-                    {invalidEmployeeName && <p className={styles.errorMessage}>{invalidEmployeeName}</p>}
+                        {successParticipation && <p className={styles.successMessage}>{successParticipation}</p>}
+                        {axiosErrorParticipation && <p className={styles.errorMessage}>{axiosErrorParticipation}</p>}
+                        {missingInfoParticipation && <p className={styles.errorMessage}>{missingInfoParticipation}</p>}
+                        {invalidEmployeeName && <p className={styles.errorMessage}>{invalidEmployeeName}</p>}
 
-                    <button>{isLoading? <Loading insideButton={true}/> : 'Enviar'}</button>
-                </form>
+                        <button>{isLoading? <Loading insideButton={true}/> : 'Enviar'}</button>
+                    </form>
+                </span>
             </div>
         </div>    
     )

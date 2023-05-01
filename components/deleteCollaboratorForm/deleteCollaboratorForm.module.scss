@@ -1,0 +1,13 @@
+@import "../../styles/base";
+
+.container {
+    @include form();
+}
+
+.errorMessage {
+    @include textColors("red")
+}
+
+.successMessage {
+    @include textColors("green")
+}
