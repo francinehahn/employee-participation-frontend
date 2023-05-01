@@ -36,7 +36,7 @@ export default function Employees ({token}) {
 
     const [dataRanking, isLoadingRanking, errorRanking] = useRequestData(`${baseUrl}users/projects/avg-participation`, token.token, reload)
     const [allEmployees, isLoadingAllEmployees, setIsLoadingAllEmployees, errorAllEmployees] = useRequestData(`${baseUrl}users/employees?search=${status}`, token.token, reload)
-    const [dataEmployee, isLoadingEmployee, setIsLoadingEmployee, errorEmployee] = useRequestData(`${baseUrl}users/employees/info/${selectedEmployee.replace(" ", "-")}`, token.token, reload) 
+    const [dataEmployee, isLoadingEmployee, setIsLoadingEmployee, errorEmployee] = useRequestData(`${baseUrl}users/employees/info/${selectedEmployee.replaceAll(" ", "-")}`, token.token, reload)
     
     const renderEmployees = allEmployees && allEmployees.map(item => {
         return <EmployeesList key={item.employee_name} item={item}/>
