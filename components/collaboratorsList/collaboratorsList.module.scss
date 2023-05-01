@@ -3,7 +3,7 @@
 .container {
     list-style: none;
     height: 28vh;
-    padding-right: 1rem;
+    padding-right: 6rem;
     overflow-y: auto;
     
     &::-webkit-scrollbar {
@@ -23,16 +23,5 @@
         align-items: center;
         gap: .5rem;
         line-height: 2.2rem;
-    }
-
-    svg {
-        height: 1.1rem;
-        width: 1.1rem;
-        @include textColors("dark-blue");
-
-        &:hover {
-            cursor: pointer;
-            @include textColors("dark-blue-hover");
-        }
     }
 }
