@@ -4,12 +4,12 @@ export default function EmployeeChart ({data, employee}) {
     const series = []
     
     data.forEach(element => {
-        series.push({x: `${element.project_name} - ${element.end_date}`, y: element.participation, goals: [
+        series.push({x: `${element.project_name} - ${element.end_date}`, y: element.collaborator_participation, goals: [
             {
                 name: 'Média de participação de todos os colaboradores',
-                value: 20,
+                value: element.avg_participation,
                 strokeHeight: 5,
-                strokeColor: '#775DD0'
+                strokeColor: '#FF00ED'
             }
         ]})
     })
@@ -42,7 +42,7 @@ export default function EmployeeChart ({data, employee}) {
                         showForSingleSeries: true,
                         customLegendItems: ['Participação do colaborador', 'Média de participação do grupo'],
                         markers: {
-                            fillColors: ['#FFCF00', '#775DD0']
+                            fillColors: ['#FFCF00', '#FF00ED']
                         },
                         offsetY: 5,
                     },
