@@ -8,7 +8,7 @@ This website is responsive to all screes sizes.
 Data was consumed from an API developed by me. The link of the github repository is: https://github.com/francinehahn/employee-participation-backend
 
 ## 🌐 Deploy
-
+https://employee-participation-frontend.vercel.app/
 
 ## 👩‍💻 Technologies
 - Javascript
@@ -42,6 +42,18 @@ Data was consumed from an API developed by me. The link of the github repository
     - Delete an employee
 
 ## 📷 Images
+![Home-desktop](./images/print-home-desktop.png)
+![Login-desktop](./images/print-login-desktop.png)
+![Signup-desktop](./images/print-signup-desktop.png)
+![Projects-desktop](./images/print-projects-desktop.png)
+![Projects-form-desktop](./images/print-projectsForm-desktop.png)
+![Employees-desktop](./images/print-employees-desktop.png)
+![Employees2-desktop](./images/print-employees2-desktop.png)
+![Employees-form-desktop](./images/print-employeesForm-desktop.png)
+![Registration-desktop](./images/print-registration-desktop.png)
+<br>
+<img src="./images/print1-mobile.jpeg" width="35%"/>
+<br>
 
 ## 🛰 Running the project
 <pre>

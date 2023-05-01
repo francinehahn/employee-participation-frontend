@@ -89,13 +89,13 @@
             &:nth-child(2) {
                 h4 {
                     @include textColors("dark-blue");
-                    margin-bottom: 1rem;
+                        margin-bottom: 1rem;
     
                     @media screen and (min-width: 800px) {
                         font-size: 1.1rem;
                     }
                     @media screen and (max-width: 800px) {
-                        font-size: .9rem;
+                        font-size: 1rem;
                     }
                 }
     

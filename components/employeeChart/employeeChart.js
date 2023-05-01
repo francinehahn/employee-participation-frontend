@@ -122,6 +122,7 @@ export default function EmployeeChart ({data, employee}) {
                     ]
                 }}
                 width={650}
+                height={400}
             />
         </>
     )

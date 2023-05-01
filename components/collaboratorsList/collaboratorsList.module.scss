@@ -8,6 +8,9 @@
     @media screen and (min-width: 900px) {
         padding-right: 3.6rem;
     }
+    @media screen and (max-width: 900px) {
+        padding-right: 1rem;
+    }
     
     &::-webkit-scrollbar {
         width: 10px;

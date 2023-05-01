@@ -41,13 +41,15 @@ export default function BarChart ({collaborators}) {
                         breakpoint: 450,
                         options: {
                             chart: {
-                                width: 330
+                                width: 330,
+                                height: 380
                             }
                         }
                     }
                 ]
             }}
             width={450}
+            height={350}
         />
     )
 }
