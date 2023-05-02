@@ -94,14 +94,14 @@ export default function Employees ({token}) {
                         <BarChartWithNoSSR data={dataEmployee} employee={selectedEmployee}/>
                     )}
 
-                    {selectedEmployee === "" && isLoadingRanking && <div className={styles.button}><Loading insideButton={false}/></div>}
+                    {selectedEmployee === "" && isLoadingRanking && <div className={styles.loadingRanking}><Loading insideButton={false}/></div>}
                     {selectedEmployee === "" && !isLoadingRanking && errorRanking && <p>{errorRanking}</p>}
                     {selectedEmployee === "" && !isLoadingRanking && dataRanking && (
                         <RankingWithNoSSR data={dataRanking}/>
                     )}
                 </section>
 
-                {showEditEmployeeStatusForm && 
+                {allEmployees && showEditEmployeeStatusForm && 
                     <EditEmployeeStatusForm
                         setShowEditEmployeeStatusForm={setShowEditEmployeeStatusForm}
                         allEmployees={allEmployees}
@@ -111,7 +111,7 @@ export default function Employees ({token}) {
                     />
                 }
 
-                {showDeleteEmployeeForm &&
+                {allEmployees && showDeleteEmployeeForm &&
                     <DeleteEmployeeForm 
                         setShowDeleteEmployeeForm = {setShowDeleteEmployeeForm}
                         allEmployees={allEmployees}
