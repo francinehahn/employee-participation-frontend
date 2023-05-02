@@ -4,7 +4,7 @@ export default function EmployeeChart ({data, employee}) {
     const series = []
     
     data.forEach(element => {
-        series.push({x: `${element.project_name} - ${element.end_date}`, y: element.collaborator_participation, goals: [
+        series.push({x: `${element.project_name} - ${element.end_date.slice(3, 10)}`, y: element.collaborator_participation, goals: [
             {
                 name: 'Média de participação de todos os colaboradores',
                 value: element.avg_participation,
@@ -44,6 +44,7 @@ export default function EmployeeChart ({data, employee}) {
                         markers: {
                             fillColors: ['#FFCF00', '#FF00ED']
                         },
+                        offsetX: 5,
                         offsetY: 5,
                     },
                     responsive: [
