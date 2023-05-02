@@ -5,11 +5,11 @@
     height: 28vh;
     overflow-y: auto;
 
-    @media screen and (min-width: 900px) {
+    @media screen and (min-width: 800px) {
         padding-right: 3.6rem;
     }
-    @media screen and (max-width: 900px) {
-        padding-right: 1rem;
+    @media screen and (max-width: 800px) {
+        padding-right: 2rem;
     }
     
     &::-webkit-scrollbar {

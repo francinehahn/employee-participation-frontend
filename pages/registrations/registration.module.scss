@@ -19,7 +19,7 @@
 
         div {
             background-color: white;
-            padding: 1.5rem;
+            padding: 1.8rem;
             margin: 20vh auto 0 auto;
 
             @media screen and (min-width: 600px) {
@@ -34,12 +34,13 @@
             
             h2 {
                 @include textColors("dark-blue");
+                margin-bottom: 1rem;
 
                 @media screen and (min-width: 800px) {
-                    font-size: 1.8rem;
+                    font-size: 1.6rem;
                 }
                 @media screen and (max-width: 800px) {
-                    font-size: 1.6rem;
+                    font-size: 1.3rem;
                 }
             }
             
