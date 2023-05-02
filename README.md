@@ -52,8 +52,27 @@ https://employee-participation-frontend.vercel.app/
 ![Employees-form-desktop](./images/print-employeesForm-desktop.png)
 ![Registration-desktop](./images/print-registration-desktop.png)
 <br>
-<img src="./images/print1-mobile.jpeg" width="35%"/>
+<img src="./images/print-home-mobile.jpeg" width="35%"/>
 <br>
+<img src="./images/print-menu-mobile.jpeg" width="35%"/>
+<br>
+<img src="./images/print-login-mobile.jpeg" width="35%"/>
+<br>
+<img src="./images/print-signup-mobile.jpeg" width="35%"/>
+<br>
+<img src="./images/print-projects-mobile.jpeg" width="35%"/>
+<br>
+<img src="./images/print-projects2-mobile.jpeg" width="35%"/>
+<br>
+<img src="./images/print-projectsForm-mobile.jpeg" width="35%"/>
+<br>
+<img src="./images/print-employees-mobile.jpeg" width="35%"/>
+<br>
+<img src="./images/print-employees2-mobile.jpeg" width="35%"/>
+<br>
+<img src="./images/print-employees3-mobile.jpeg" width="35%"/>
+<br>
+<img src="./images/print-registration-mobile.jpeg" width="35%"/>
 
 ## 🛰 Running the project
 <pre>
